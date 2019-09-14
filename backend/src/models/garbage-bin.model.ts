@@ -17,7 +17,7 @@ export class GarbageBin extends Entity {
   @property({
     type: 'number',
     id: true,
-    required: true,
+    // required: true,
     generated: true,
   })
   id: number;
