@@ -10,16 +10,16 @@ import { YellowBox } from "react-native";
 YellowBox.ignoreWarnings(['Require cycle:']);
 
 const AppNavigator = createStackNavigator({
-
     MapView: {
-        screen: MapViewScreen,
+        screen: MapViewScreen
     },
+
     RankView: {
         screen: RankView
-    }
-
+    },
+}, {
+    initialRouteName: 'MapView'
 });
-
 
 const Component = createAppContainer(AppNavigator);
 
