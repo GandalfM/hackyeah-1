@@ -4,6 +4,7 @@ import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER
 import useCurrentPosition from '../../hooks/useCurrentPosition';
 import Marker from './marker';
 import NewBin from './new-bin';
+import BinDetails from './bin-details';
 import useListBins from "../../hooks/useListBins";
 import { GarbageBin } from "../../client/src/models";
 import { StateProvider } from "../../context/state";
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
 export function App() {
     const { loading, data: location } = useCurrentPosition();
     const { loading: loadingList, data: binList } = useListBins();
-
+    const [binDetails, setBinDetails] = useState();
 
     if (loading) {
         return <Text>Loading </Text>;
@@ -33,7 +34,7 @@ export function App() {
         if (loadingList) {
             return null;
         } else {
-            return binList.map((bin: GarbageBin) => <Marker key={bin.id} location={bin} />)
+            return binList.map((bin: GarbageBin) => <Marker key={bin.id} id={bin.id} location={bin} onPress={() => { setBinDetails(bin.id) }} />)
         }
     };
 
@@ -44,10 +45,14 @@ export function App() {
                 style={styles.map}
                 initialRegion={location}
                 showsUserLocation
+                onPress={() => setBinDetails(undefined)}
             >
                 {renderList()}
             </MapView>
-            <NewBin />
+            {!binDetails && <NewBin />}
+            {binDetails && <BinDetails id={binDetails} onRemove={() => {
+                setBinDetails(undefined)
+            }} />}
         </View>
     );
 }
