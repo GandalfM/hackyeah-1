@@ -1,24 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import {GarbageBinControllerControllerApi} from "../client/src/apis";
 import {GarbageBin} from "../client/src/models";
+import {useStateValue} from "../context/state";
 
 const api = new GarbageBinControllerControllerApi();
 
 export default () : {loading: boolean, data: GarbageBin[]} => {
-    const [bins, setBins] = useState(null);
+    const [state, dispatch]  = useStateValue();
 
     useEffect(() => {
         (async () => {
             api.garbageBinControllerControllerFind({})
                 .then((result) => {
-                    setBins(result);
+                    dispatch({type: 'SET_BINS', bins: result});
                 })
                 .catch(console.error);
         })();
     }, []);
 
     return {
-        loading: !bins,
-        data: bins
+        loading: !state.bins,
+        data: state.bins
     }
 }
