@@ -23,10 +23,10 @@ const styles = StyleSheet.create({
 });
 
 
-export function MapViewScreen() {
-    const { loading, data: location } = useCurrentPosition();
-    const { loading: loadingList, data: binList } = useListBins();
-    const { loading: loadingUser, data: loggedInUserProfile } = useLoggedInUserProfile();
+export function MapViewScreen({navigation}) {
+    const {loading, data: location} = useCurrentPosition();
+    const {loading: loadingList, data: binList} = useListBins();
+    const { data: loggedInUser, loading: loadingLoggedInUser } = useLoggedInUserProfile("mateusz.szerszynski@gmail.com");
     const [binDetails, setBinDetails] = useState(undefined);
 
 
@@ -59,7 +59,7 @@ export function MapViewScreen() {
                     setBinDetails(undefined)
                 }} />
             }
-            <UserMenu loggedInUser={loggedInUserProfile} loading={loadingUser} />
+            <UserMenu navigation={navigation} />
         </View >
     );
 }

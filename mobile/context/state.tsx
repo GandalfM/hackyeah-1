@@ -1,8 +1,10 @@
 import React, { createContext, Dispatch, useContext, useReducer } from 'react';
 import { GarbageBin } from "../client/src/models";
+import { User } from "../../backend/src/models";
 
 interface GlobalState {
     bins: GarbageBin[] | null
+    loggedInUser: User | null
 }
 
 const reducer = (state: GlobalState, action): GlobalState => {
@@ -27,6 +29,13 @@ const reducer = (state: GlobalState, action): GlobalState => {
             }
         }
 
+        case 'SET_LOGGED_IN_USER': {
+            return {
+                ...state,
+                loggedInUser: action.loggedInUser
+            }
+        }
+
         default:
             return state;
     }
@@ -34,7 +43,7 @@ const reducer = (state: GlobalState, action): GlobalState => {
 
 export const StateContext = createContext<[GlobalState, Dispatch<any>]>(null);
 export const StateProvider = ({ children }) => (
-    <StateContext.Provider value={useReducer(reducer, { bins: null })}>
+    <StateContext.Provider value={useReducer(reducer, { bins: null, loggedInUser: null })}>
         {children}
     </StateContext.Provider>
 );
