@@ -4,6 +4,7 @@ import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER
 import useCurrentPosition from '../../hooks/useCurrentPosition';
 import Marker from './marker';
 import NewBin from './new-bin';
+import BinDetails from './bin-details';
 import UserMenu from './user-menu';
 import useListBins from "../../hooks/useListBins";
 import { GarbageBin } from "../../client/src/models";
@@ -25,6 +26,8 @@ export function MapViewScreen({navigation}) {
     const {loading, data: location} = useCurrentPosition();
     const {loading: loadingList, data: binList} = useListBins();
     const { data: loggedInUser, loading: loadingLoggedInUser } = useLoggedInUserProfile("mateusz.szerszynski@gmail.com");
+    const [binDetails, setBinDetails] = useState(undefined);
+
 
     if (loading) {
         return <Text>Loading </Text>;
@@ -34,7 +37,7 @@ export function MapViewScreen({navigation}) {
         if (loadingList) {
             return null;
         } else {
-            return binList.map((bin: GarbageBin) => <Marker key={bin.id} location={bin}/>)
+            return binList.map((bin: GarbageBin) => <Marker key={bin.id} id={bin.id} location={bin} onPress={() => { setBinDetails(bin.id) }} />)
         }
     };
 
@@ -45,11 +48,17 @@ export function MapViewScreen({navigation}) {
                 style={styles.map}
                 initialRegion={location}
                 showsUserLocation
+                onPress={() => setBinDetails(undefined)}
             >
                 {renderList()}
             </MapView>
+            {!binDetails && <NewBin />}
+            {
+                binDetails && <BinDetails id={binDetails} onRemove={() => {
+                    setBinDetails(undefined)
+                }} />
+            }
             <UserMenu navigation={navigation} />
-            <NewBin/>
-        </View>
+        </View >
     );
 }

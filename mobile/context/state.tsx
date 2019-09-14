@@ -22,6 +22,13 @@ const reducer = (state: GlobalState, action): GlobalState => {
             }
         }
 
+        case 'REMOVE_BIN': {
+            return {
+                ...state,
+                bins: state.bins.filter(({ id }) => id !== action.payload)
+            }
+        }
+
         case 'SET_LOGGED_IN_USER': {
             return {
                 ...state,

@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany} from '@loopback/repository';
+import {Award} from './award.model';
 
 @model({settings: {}})
 export class User extends Entity {
@@ -27,6 +28,8 @@ export class User extends Entity {
   })
   email: string;
 
+  @hasMany(() => Award)
+  awards: Award[];
 
   constructor(data?: Partial<User>) {
     super(data);
