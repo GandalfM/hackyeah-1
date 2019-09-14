@@ -9,6 +9,7 @@ import UserMenu from './user-menu';
 import useListBins from "../../hooks/useListBins";
 import { GarbageBin } from "../../client/src/models";
 import useLoggedInUserProfile from "../../hooks/useLoggedInUserProfile";
+import { AppLoading } from 'expo';
 
 const styles = StyleSheet.create({
     container: {
@@ -22,22 +23,22 @@ const styles = StyleSheet.create({
 });
 
 
-export function MapViewScreen() {
-    const { loading, data: location } = useCurrentPosition();
-    const { loading: loadingList, data: binList } = useListBins();
-    const { loading: loadingUser, data: loggedInUserProfile } = useLoggedInUserProfile();
+export function MapViewScreen({navigation}) {
+    const {loading, data: location} = useCurrentPosition();
+    const {loading: loadingList, data: binList} = useListBins();
+    const { data: loggedInUser, loading: loadingLoggedInUser } = useLoggedInUserProfile("mateusz.szerszynski@gmail.com");
     const [binDetails, setBinDetails] = useState(undefined);
 
 
     if (loading) {
-        return <Text>Loading </Text>;
+        return <AppLoading />;
     }
 
     const renderList = () => {
         if (loadingList) {
             return null;
         } else {
-            return binList.map((bin: GarbageBin) => <Marker key={bin.id} id={bin.id} location={bin} onPress={() => { setBinDetails(bin.id) }} />)
+            return binList.map((bin: GarbageBin) => <Marker key={bin.id} location={bin} onPress={() => { setBinDetails(bin.id) }} />)
         }
     };
 
@@ -58,7 +59,7 @@ export function MapViewScreen() {
                     setBinDetails(undefined)
                 }} />
             }
-            <UserMenu loggedInUser={loggedInUserProfile} loading={loadingUser} />
+            <UserMenu navigation={navigation} />
         </View >
     );
 }
