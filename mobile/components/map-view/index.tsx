@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
 import useCurrentPosition from '../../hooks/useCurrentPosition';
@@ -22,9 +22,9 @@ const styles = StyleSheet.create({
 
 
 export default function App() {
-    const { loading, data: location } = useCurrentPosition();
-    const { loading: loadingList, data: binList } = useListBins();
-    const { loading: loadingUser, data: loggedInUserProfile } = useLoggedInUserProfile();
+    const {loading, data: location} = useCurrentPosition();
+    const {loading: loadingList, data: binList} = useListBins();
+    const {loading: loadingUser, data: loggedInUserProfile} = useLoggedInUserProfile();
 
 
     if (loading) {
@@ -35,12 +35,12 @@ export default function App() {
         if (loadingList) {
             return null;
         } else {
-            return binList.map((bin: GarbageBin) => <Marker key={bin.id} location={bin} />)
+            return binList.map((bin: GarbageBin) => <Marker key={bin.id} location={bin}/>)
         }
     };
 
     return (
-        <View style={styles.container} >
+        <View style={styles.container}>
             <MapView
                 provider={PROVIDER_GOOGLE} // remove if not using Google Maps
                 style={styles.map}
@@ -50,7 +50,7 @@ export default function App() {
                 {renderList()}
             </MapView>
             <UserMenu loggedInUser={loggedInUserProfile} loading={loadingUser}/>
-            <NewBin />
+            <NewBin/>
         </View>
     );
 }

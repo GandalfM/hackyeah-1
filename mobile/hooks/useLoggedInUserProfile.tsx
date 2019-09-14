@@ -9,7 +9,7 @@ export default (): { loading: boolean, data: User } => {
 
     useEffect(() => {
         (async () => {
-            api.userControllerFind( {filter: {username: "zak"}})
+            api.userControllerFind( {filter: {where: {username: "mateusz"}}})
                 .then((result) => {
                     setLoggedInUser(result);
                 })
