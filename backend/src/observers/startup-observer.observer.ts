@@ -35,7 +35,7 @@ export class StartupObserverObserver implements LifeCycleObserver {
       if (binCount === 0) {
           this.garbageBinRepository.createAll([
               {latitude: 52.112666, longitude: 20.827937},
-              {latitude: 52.112650, longitude: 20.827937}
+              {latitude: 52.107525, longitude: 20.835998}
               ])
               .then(() => console.log("Added bins initial dataset"));
       }
