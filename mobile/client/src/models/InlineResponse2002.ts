@@ -15,39 +15,32 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface InlineResponse200
+ * @interface InlineResponse2002
  */
-export interface InlineResponse200 {
+export interface InlineResponse2002 {
     /**
      * 
      * @type {number}
-     * @memberof InlineResponse200
+     * @memberof InlineResponse2002
      */
-    points?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse200
-     */
-    userId?: string;
+    count?: number;
 }
 
-export function InlineResponse200FromJSON(json: any): InlineResponse200 {
-    return InlineResponse200FromJSONTyped(json, false);
+export function InlineResponse2002FromJSON(json: any): InlineResponse2002 {
+    return InlineResponse2002FromJSONTyped(json, false);
 }
 
-export function InlineResponse200FromJSONTyped(json: any, ignoreDiscriminator: boolean): InlineResponse200 {
+export function InlineResponse2002FromJSONTyped(json: any, ignoreDiscriminator: boolean): InlineResponse2002 {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'points': !exists(json, 'points') ? undefined : json['points'],
-        'userId': !exists(json, 'userId') ? undefined : json['userId'],
+        'count': !exists(json, 'count') ? undefined : json['count'],
     };
 }
 
-export function InlineResponse200ToJSON(value?: InlineResponse200): any {
+export function InlineResponse2002ToJSON(value?: InlineResponse2002): any {
     if (value === undefined) {
         return undefined;
     }
@@ -56,8 +49,7 @@ export function InlineResponse200ToJSON(value?: InlineResponse200): any {
     }
     return {
         
-        'points': value.points,
-        'userId': value.userId,
+        'count': value.count,
     };
 }
 

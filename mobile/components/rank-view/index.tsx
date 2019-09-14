@@ -1,38 +1,13 @@
 import React from 'react';
-import { AppRegistry, StyleSheet, View } from 'react-native';
+import { AppRegistry, StyleSheet } from 'react-native';
 import { useStateValue } from "../../context/state";
 
-import { Body, Container, H3, Left, Right, Thumbnail, Header, Content, List, ListItem, Text} from "native-base";
+import {Body, Container, H3, Left, Right, Thumbnail, Header, Content, List, ListItem, Text, View} from "native-base";
 import gravatar from "gravatar";
 
 import Swiper from 'react-native-swiper'
-
-const styles = StyleSheet.create({
-    wrapper: {},
-    slide1: {
-
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    slide2: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#97CAE5'
-    },
-    slide3: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#92BBD9'
-    },
-    text: {
-        color: '#fff',
-        fontSize: 30,
-        fontWeight: 'bold'
-    }
-});
+import {styles} from "./styles";
+import {RankListView} from "./RankView";
 
 export function RankView() {
     const [state] = useStateValue();
@@ -41,29 +16,7 @@ export function RankView() {
     return (
         <Swiper style={styles.wrapper}>
             <View style={styles.slide1}>
-                <View>
-                    <Thumbnail large source={{uri: avatarUrl}}/>
-                    <Text style={styles.text}>Mateusz</Text>
-                    <Content style={{flexGrow: 1}}>
-                        <List>
-                            <ListItem itemHeader first>
-                                <Text>COMEDY</Text>
-                            </ListItem>
-                            <ListItem >
-                                <Text>Hangover</Text>
-                            </ListItem>
-                            <ListItem last>
-                                <Text>Cop Out</Text>
-                            </ListItem>
-                            <ListItem itemHeader>
-                                <Text>ACTION</Text>
-                            </ListItem>
-                            <ListItem>
-                                <Text>Terminator Genesis</Text>
-                            </ListItem>
-                        </List>
-                    </Content>
-                </View>
+                <RankListView/>
             </View>
             <View style={styles.slide1}>
                 <Container>

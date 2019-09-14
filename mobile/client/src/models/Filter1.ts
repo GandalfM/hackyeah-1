@@ -13,6 +13,10 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    GarbagebinsInclude,
+    GarbagebinsIncludeFromJSON,
+    GarbagebinsIncludeFromJSONTyped,
+    GarbagebinsIncludeToJSON,
     UsersFields,
     UsersFieldsFromJSON,
     UsersFieldsFromJSONTyped,
@@ -61,6 +65,12 @@ export interface Filter1 {
      * @memberof Filter1
      */
     order?: Array<string>;
+    /**
+     * 
+     * @type {Array<GarbagebinsInclude>}
+     * @memberof Filter1
+     */
+    include?: Array<GarbagebinsInclude>;
 }
 
 export function Filter1FromJSON(json: any): Filter1 {
@@ -79,6 +89,7 @@ export function Filter1FromJSONTyped(json: any, ignoreDiscriminator: boolean): F
         'limit': !exists(json, 'limit') ? undefined : json['limit'],
         'skip': !exists(json, 'skip') ? undefined : json['skip'],
         'order': !exists(json, 'order') ? undefined : json['order'],
+        'include': !exists(json, 'include') ? undefined : (json['include'] as Array<any>).map(GarbagebinsIncludeFromJSON),
     };
 }
 
@@ -97,6 +108,7 @@ export function Filter1ToJSON(value?: Filter1): any {
         'limit': value.limit,
         'skip': value.skip,
         'order': value.order,
+        'include': value.include === undefined ? undefined : (value.include as Array<any>).map(GarbagebinsIncludeToJSON),
     };
 }
 

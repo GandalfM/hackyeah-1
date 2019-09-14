@@ -15,39 +15,53 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface InlineResponse200
+ * @interface AwardPartial
  */
-export interface InlineResponse200 {
+export interface AwardPartial {
     /**
      * 
      * @type {number}
-     * @memberof InlineResponse200
+     * @memberof AwardPartial
      */
     points?: number;
     /**
      * 
-     * @type {string}
-     * @memberof InlineResponse200
+     * @type {number}
+     * @memberof AwardPartial
      */
-    userId?: string;
+    id?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof AwardPartial
+     */
+    userId?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof AwardPartial
+     */
+    garbageBinId?: number;
 }
 
-export function InlineResponse200FromJSON(json: any): InlineResponse200 {
-    return InlineResponse200FromJSONTyped(json, false);
+export function AwardPartialFromJSON(json: any): AwardPartial {
+    return AwardPartialFromJSONTyped(json, false);
 }
 
-export function InlineResponse200FromJSONTyped(json: any, ignoreDiscriminator: boolean): InlineResponse200 {
+export function AwardPartialFromJSONTyped(json: any, ignoreDiscriminator: boolean): AwardPartial {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
         'points': !exists(json, 'points') ? undefined : json['points'],
+        'id': !exists(json, 'id') ? undefined : json['id'],
         'userId': !exists(json, 'userId') ? undefined : json['userId'],
+        'garbageBinId': !exists(json, 'garbageBinId') ? undefined : json['garbageBinId'],
     };
 }
 
-export function InlineResponse200ToJSON(value?: InlineResponse200): any {
+export function AwardPartialToJSON(value?: AwardPartial): any {
     if (value === undefined) {
         return undefined;
     }
@@ -57,7 +71,9 @@ export function InlineResponse200ToJSON(value?: InlineResponse200): any {
     return {
         
         'points': value.points,
+        'id': value.id,
         'userId': value.userId,
+        'garbageBinId': value.garbageBinId,
     };
 }
 

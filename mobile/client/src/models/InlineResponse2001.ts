@@ -20,28 +20,16 @@ import { exists, mapValues } from '../runtime';
 export interface InlineResponse2001 {
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof InlineResponse2001
      */
-    greeting?: string;
+    sum?: number;
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof InlineResponse2001
      */
-    date?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2001
-     */
-    url?: string;
-    /**
-     * 
-     * @type {{ [key: string]: object; }}
-     * @memberof InlineResponse2001
-     */
-    headers?: { [key: string]: object; };
+    place?: number;
 }
 
 export function InlineResponse2001FromJSON(json: any): InlineResponse2001 {
@@ -54,10 +42,8 @@ export function InlineResponse2001FromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'greeting': !exists(json, 'greeting') ? undefined : json['greeting'],
-        'date': !exists(json, 'date') ? undefined : json['date'],
-        'url': !exists(json, 'url') ? undefined : json['url'],
-        'headers': !exists(json, 'headers') ? undefined : json['headers'],
+        'sum': !exists(json, 'sum') ? undefined : json['sum'],
+        'place': !exists(json, 'place') ? undefined : json['place'],
     };
 }
 
@@ -70,10 +56,8 @@ export function InlineResponse2001ToJSON(value?: InlineResponse2001): any {
     }
     return {
         
-        'greeting': value.greeting,
-        'date': value.date,
-        'url': value.url,
-        'headers': value.headers,
+        'sum': value.sum,
+        'place': value.place,
     };
 }
 

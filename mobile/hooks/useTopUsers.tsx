@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { GarbageBin } from "../client/src/models";
-import { useStateValue } from "../context/state";
-import {garbageApi} from '../api';
+import {awardApi} from '../api';
 
 export default (): { loading: boolean, data: GarbageBin[] } => {
-    const [state, dispatch] = useStateValue();
+    const [topUsers, setTopUsers] = useState(null);
 
     useEffect(() => {
         (async () => {
-            garbageApi.garbageBinControllerControllerFind({})
+            awardApi.awardUserControllerGetTopTenUsers()
                 .then((result) => {
-                    dispatch({ type: 'SET_BINS', bins: result });
+                    setTopUsers(result);
                 })
                 .catch(console.error);
         })();
     }, []);
 
     return {
-        loading: !state.bins,
-        data: state.bins
+        loading: !topUsers,
+        data: topUsers
     }
 }

@@ -15,39 +15,39 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface InlineResponse200
+ * @interface GarbagebinsInclude
  */
-export interface InlineResponse200 {
-    /**
-     * 
-     * @type {number}
-     * @memberof InlineResponse200
-     */
-    points?: number;
+export interface GarbagebinsInclude {
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse200
+     * @memberof GarbagebinsInclude
      */
-    userId?: string;
+    relation?: string;
+    /**
+     * 
+     * @type {object}
+     * @memberof GarbagebinsInclude
+     */
+    scope?: object;
 }
 
-export function InlineResponse200FromJSON(json: any): InlineResponse200 {
-    return InlineResponse200FromJSONTyped(json, false);
+export function GarbagebinsIncludeFromJSON(json: any): GarbagebinsInclude {
+    return GarbagebinsIncludeFromJSONTyped(json, false);
 }
 
-export function InlineResponse200FromJSONTyped(json: any, ignoreDiscriminator: boolean): InlineResponse200 {
+export function GarbagebinsIncludeFromJSONTyped(json: any, ignoreDiscriminator: boolean): GarbagebinsInclude {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'points': !exists(json, 'points') ? undefined : json['points'],
-        'userId': !exists(json, 'userId') ? undefined : json['userId'],
+        'relation': !exists(json, 'relation') ? undefined : json['relation'],
+        'scope': !exists(json, 'scope') ? undefined : json['scope'],
     };
 }
 
-export function InlineResponse200ToJSON(value?: InlineResponse200): any {
+export function GarbagebinsIncludeToJSON(value?: GarbagebinsInclude): any {
     if (value === undefined) {
         return undefined;
     }
@@ -56,8 +56,8 @@ export function InlineResponse200ToJSON(value?: InlineResponse200): any {
     }
     return {
         
-        'points': value.points,
-        'userId': value.userId,
+        'relation': value.relation,
+        'scope': value.scope,
     };
 }
 

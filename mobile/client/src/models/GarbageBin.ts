@@ -36,6 +36,24 @@ export interface GarbageBin {
      * @memberof GarbageBin
      */
     id?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof GarbageBin
+     */
+    userId?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof GarbageBin
+     */
+    approvalCount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof GarbageBin
+     */
+    rejectionCount?: number;
 }
 
 export function GarbageBinFromJSON(json: any): GarbageBin {
@@ -51,6 +69,9 @@ export function GarbageBinFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'latitude': json['latitude'],
         'longitude': json['longitude'],
         'id': !exists(json, 'id') ? undefined : json['id'],
+        'userId': !exists(json, 'userId') ? undefined : json['userId'],
+        'approvalCount': !exists(json, 'approvalCount') ? undefined : json['approvalCount'],
+        'rejectionCount': !exists(json, 'rejectionCount') ? undefined : json['rejectionCount'],
     };
 }
 
@@ -66,6 +87,9 @@ export function GarbageBinToJSON(value?: GarbageBin): any {
         'latitude': value.latitude,
         'longitude': value.longitude,
         'id': value.id,
+        'userId': value.userId,
+        'approvalCount': value.approvalCount,
+        'rejectionCount': value.rejectionCount,
     };
 }
 

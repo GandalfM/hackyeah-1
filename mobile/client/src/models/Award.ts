@@ -15,39 +15,53 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface InlineResponse200
+ * @interface Award
  */
-export interface InlineResponse200 {
+export interface Award {
     /**
      * 
      * @type {number}
-     * @memberof InlineResponse200
+     * @memberof Award
      */
-    points?: number;
+    points: number;
     /**
      * 
-     * @type {string}
-     * @memberof InlineResponse200
+     * @type {number}
+     * @memberof Award
      */
-    userId?: string;
+    id?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Award
+     */
+    userId?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Award
+     */
+    garbageBinId?: number;
 }
 
-export function InlineResponse200FromJSON(json: any): InlineResponse200 {
-    return InlineResponse200FromJSONTyped(json, false);
+export function AwardFromJSON(json: any): Award {
+    return AwardFromJSONTyped(json, false);
 }
 
-export function InlineResponse200FromJSONTyped(json: any, ignoreDiscriminator: boolean): InlineResponse200 {
+export function AwardFromJSONTyped(json: any, ignoreDiscriminator: boolean): Award {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'points': !exists(json, 'points') ? undefined : json['points'],
+        'points': json['points'],
+        'id': !exists(json, 'id') ? undefined : json['id'],
         'userId': !exists(json, 'userId') ? undefined : json['userId'],
+        'garbageBinId': !exists(json, 'garbageBinId') ? undefined : json['garbageBinId'],
     };
 }
 
-export function InlineResponse200ToJSON(value?: InlineResponse200): any {
+export function AwardToJSON(value?: Award): any {
     if (value === undefined) {
         return undefined;
     }
@@ -57,7 +71,9 @@ export function InlineResponse200ToJSON(value?: InlineResponse200): any {
     return {
         
         'points': value.points,
+        'id': value.id,
         'userId': value.userId,
+        'garbageBinId': value.garbageBinId,
     };
 }
 

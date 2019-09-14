@@ -30,6 +30,24 @@ export interface GarbageBinExcludingId {
      * @memberof GarbageBinExcludingId
      */
     longitude: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof GarbageBinExcludingId
+     */
+    userId?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof GarbageBinExcludingId
+     */
+    approvalCount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof GarbageBinExcludingId
+     */
+    rejectionCount?: number;
 }
 
 export function GarbageBinExcludingIdFromJSON(json: any): GarbageBinExcludingId {
@@ -44,6 +62,9 @@ export function GarbageBinExcludingIdFromJSONTyped(json: any, ignoreDiscriminato
         
         'latitude': json['latitude'],
         'longitude': json['longitude'],
+        'userId': !exists(json, 'userId') ? undefined : json['userId'],
+        'approvalCount': !exists(json, 'approvalCount') ? undefined : json['approvalCount'],
+        'rejectionCount': !exists(json, 'rejectionCount') ? undefined : json['rejectionCount'],
     };
 }
 
@@ -58,6 +79,9 @@ export function GarbageBinExcludingIdToJSON(value?: GarbageBinExcludingId): any 
         
         'latitude': value.latitude,
         'longitude': value.longitude,
+        'userId': value.userId,
+        'approvalCount': value.approvalCount,
+        'rejectionCount': value.rejectionCount,
     };
 }
 
