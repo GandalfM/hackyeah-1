@@ -9,6 +9,7 @@ import UserMenu from './user-menu';
 import useListBins from "../../hooks/useListBins";
 import { GarbageBin } from "../../client/src/models";
 import useLoggedInUserProfile from "../../hooks/useLoggedInUserProfile";
+import { AppLoading } from 'expo';
 
 const styles = StyleSheet.create({
     container: {
@@ -30,14 +31,14 @@ export function MapViewScreen() {
 
 
     if (loading) {
-        return <Text>Loading </Text>;
+        return <AppLoading />;
     }
 
     const renderList = () => {
         if (loadingList) {
             return null;
         } else {
-            return binList.map((bin: GarbageBin) => <Marker key={bin.id} id={bin.id} location={bin} onPress={() => { setBinDetails(bin.id) }} />)
+            return binList.map((bin: GarbageBin) => <Marker key={bin.id} location={bin} onPress={() => { setBinDetails(bin.id) }} />)
         }
     };
 
