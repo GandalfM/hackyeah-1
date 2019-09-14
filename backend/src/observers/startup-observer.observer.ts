@@ -31,7 +31,7 @@ export class StartupObserverObserver implements LifeCycleObserver {
       if (binCount === 0) {
           this.garbageBinRepository.createAll([
               {latitude: 52.112666, longitude: 20.827937},
-              {latitude: 52.112650, longitude: 20.827937}
+              {latitude: 52.107525, longitude: 20.835998}
               ])
               .then(() => console.log("Added bins initial dataset"));
       }
@@ -45,13 +45,14 @@ export class StartupObserverObserver implements LifeCycleObserver {
       if (binCount === 0) {
           this.garbageBinRepository.createAll([
               {latitude: 52.112666, longitude: 20.827937, userId: 1, approvalCount: 5, rejectionCount: 1},
-              {latitude: 52.112650, longitude: 20.827937, userId: 1}
+              {latitude: 52.112650, longitude: 20.827937, userId: 2}
               ])
               .then(() => console.log("Added bins initial dataset"));
       }
       if (awardCount === 0) {
           this.awardRepository.createAll([
-              {points: 100, userId: 1, garbageBinId: 1}
+              {points: 100, userId: 1, garbageBinId: 1},
+              {points: 200, userId: 2, garbageBinId: 2}
           ])
               .then(() => console.log("Added awards initial dataset"));
       }

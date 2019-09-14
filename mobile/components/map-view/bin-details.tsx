@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, View, ScrollView } from 'react-native';
+import { Button, Text, Icon } from 'native-base';
 import useRemoveBin from '../../hooks/useRemoveBin';
 
 const styles = StyleSheet.create({
@@ -12,6 +13,15 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderTopLeftRadius: 10,
         borderTopRightRadius: 10,
+        padding: 10,
+    },
+    actionBar: {
+        flexDirection: 'row',
+        flex: 1,
+    },
+    buttonContainer: {
+        flex: 1,
+        paddingRight: 10
     }
 });
 
@@ -21,10 +31,25 @@ export default function BinDetails({ id, onRemove }: { id: number, onRemove: () 
     return (
         <View style={styles.details} >
             <Text>Bin of number {id}</Text>
-            <Button title="Downvote bin" onPress={async () => {
-                await removeBin(id);
-                onRemove();
-            }}></Button>
+            <ScrollView style={styles.actionBar} horizontal showsHorizontalScrollIndicator={false}>
+                <View style={styles.buttonContainer}>
+                    <Button iconLeft onPress={async () => {
+                        await removeBin(id);
+                        onRemove();
+                    }}>
+                        <Icon name='thumbs-down' />
+                        <Text>Downvote</Text>
+                    </Button>
+                </View>
+
+                <View style={styles.buttonContainer}>
+                    <Button iconLeft onPress={async () => {
+                    }}>
+                        <Icon name='thumbs-up' />
+                        <Text>Upvote</Text>
+                    </Button>
+                </View>
+            </ScrollView>
         </View>
     );
 }
