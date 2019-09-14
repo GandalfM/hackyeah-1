@@ -28,10 +28,6 @@ export class StartupObserverObserver implements LifeCycleObserver {
       const {count: userCount} = await this.userRepository.count({});
       const {count: awardCount} = await this.awardRepository.count({});
 
-      await this.garbageBinRepository.deleteAll();
-      await this.userRepository.deleteAll();
-      await this.awardRepository.deleteAll();
-
       if (binCount === 0) {
           this.garbageBinRepository.createAll([
               {latitude: 52.112666, longitude: 20.827937},
