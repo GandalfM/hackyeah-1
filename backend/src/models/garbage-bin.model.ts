@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, belongsTo} from '@loopback/repository';
+import {User} from './user.model';
 
 @model({settings: {}})
 export class GarbageBin extends Entity {
@@ -17,11 +18,24 @@ export class GarbageBin extends Entity {
   @property({
     type: 'number',
     id: true,
-    // required: true,
     generated: true,
   })
   id: number;
 
+  @belongsTo(() => User)
+  userId: number;
+
+  @property({
+    type: 'number',
+    default: 0
+  })
+  approvalCount: number;
+
+  @property({
+    type: 'number',
+    default: 0
+  })
+  rejectionCount: number;
 
   constructor(data?: Partial<GarbageBin>) {
     super(data);
