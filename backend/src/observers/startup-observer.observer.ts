@@ -28,7 +28,10 @@ export class StartupObserverObserver implements LifeCycleObserver {
   async start(): Promise<void> {
       const {count} = await this.repository.count({});
       if (count === 0) {
-          this.repository.create({latitude: "52.112666", longitude: "20.827937"})
+          this.repository.createAll([
+              {latitude: 52.112666, longitude: 20.827937},
+              {latitude: 52.112650, longitude: 20.827937}
+              ])
               .then(() => console.log("Added initial dataset"));
       }
   }

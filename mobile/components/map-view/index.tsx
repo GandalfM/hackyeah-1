@@ -31,7 +31,7 @@ export default function App() {
         if (loadingList) {
             return null;
         } else {
-            return binList.map((bin: GarbageBin) => <Marker location={bin}/>)
+            return binList.map((bin: GarbageBin) => <Marker key={bin.id} location={bin}/>)
         }
     };
 
@@ -44,14 +44,6 @@ export default function App() {
                 showsUserLocation
             >
                 {renderList()}
-                {/*<Marker*/}
-                {/*    location={location}*/}
-                {/*// icon={{*/}
-                {/*//     uri: 'https://icon-library.net/images/trash-can-icon-png/trash-can-icon-png-28.jpg',*/}
-                {/*//     width: 5,*/}
-                {/*//     height: 100*/}
-                {/*// }}*/}
-                {/*/>*/}
             </MapView>
         </View>
     );
