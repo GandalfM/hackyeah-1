@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import MapView, { Overlay, PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
 import useCurrentPosition from '../../hooks/useCurrentPosition';
 import Marker from './marker';
+import NewBin from './new-bin';
 
 const styles = StyleSheet.create({
     container: {
@@ -28,13 +29,14 @@ export default function App() {
             <MapView
                 provider={PROVIDER_GOOGLE} // remove if not using Google Maps
                 style={styles.map}
-                region={location}
+                initialRegion={location}
                 showsUserLocation
             >
                 <Marker
                     location={location}
                 />
             </MapView>
+            <NewBin />
         </View>
     );
 }
