@@ -3,16 +3,16 @@ import {Entity, model, property} from '@loopback/repository';
 @model({settings: {}})
 export class GarbageBin extends Entity {
   @property({
-    type: 'string',
+    type: 'number',
     required: true,
   })
-  latitude: string;
+  latitude: number;
 
   @property({
-    type: 'string',
+    type: 'number',
     required: true,
   })
-  longitude: string;
+  longitude: number;
 
   @property({
     type: 'number',

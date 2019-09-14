@@ -4,6 +4,8 @@ import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER
 import useCurrentPosition from '../../hooks/useCurrentPosition';
 import Marker from './marker';
 import NewBin from './new-bin';
+import useListBins from "../../hooks/useListBins";
+import { GarbageBin } from "../../client/src/models";
 
 const styles = StyleSheet.create({
     container: {
@@ -19,10 +21,20 @@ const styles = StyleSheet.create({
 
 export default function App() {
     const { loading, data: location } = useCurrentPosition();
+    const { loading: loadingList, data: binList } = useListBins();
+
 
     if (loading) {
         return <Text>Loading </Text>;
     }
+
+    const renderList = () => {
+        if (loadingList) {
+            return null;
+        } else {
+            return binList.map((bin: GarbageBin) => <Marker key={bin.id} location={bin} />)
+        }
+    };
 
     return (
         <View style={styles.container} >
@@ -32,9 +44,7 @@ export default function App() {
                 initialRegion={location}
                 showsUserLocation
             >
-                <Marker
-                    location={location}
-                />
+                {renderList()}
             </MapView>
             <NewBin />
         </View>
