@@ -20,6 +20,13 @@ const reducer = (state: GlobalState, action): GlobalState => {
             }
         }
 
+        case 'REMOVE_BIN': {
+            return {
+                ...state,
+                bins: state.bins.filter(({ id }) => id !== action.payload)
+            }
+        }
+
         default:
             return state;
     }

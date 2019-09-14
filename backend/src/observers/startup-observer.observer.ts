@@ -27,9 +27,22 @@ export class StartupObserverObserver implements LifeCycleObserver {
       const {count: binCount} = await this.garbageBinRepository.count({});
       const {count: userCount} = await this.userRepository.count({});
       const {count: awardCount} = await this.awardRepository.count({});
+
+      await this.garbageBinRepository.deleteAll();
+      await this.userRepository.deleteAll();
+      await this.awardRepository.deleteAll();
+
+      if (binCount === 0) {
+          this.garbageBinRepository.createAll([
+              {latitude: 52.112666, longitude: 20.827937},
+              {latitude: 52.112650, longitude: 20.827937}
+              ])
+              .then(() => console.log("Added bins initial dataset"));
+      }
       if(userCount === 0) {
           this.userRepository.createAll([
-              {username: "zak", email: "zakhttp@gmail.com"}
+              {username: "zak", email: "zakhttp@gmail.com"},
+              {username: "mateusz", email: "mateusz.szerszynski@gmail.com"}
           ])
               .then(() => console.log("Added users initial dataset"));
       }
