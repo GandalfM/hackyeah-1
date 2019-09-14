@@ -5,15 +5,6 @@ import useRemoveBin from '../../hooks/useRemoveBin';
 
 const styles = StyleSheet.create({
     details: {
-        position: "absolute",
-        left: 30,
-        right: 30,
-        bottom: 0,
-        height: 100,
-        backgroundColor: 'white',
-        borderTopLeftRadius: 10,
-        borderTopRightRadius: 10,
-        padding: 10,
     },
     actionBar: {
         flexDirection: 'row',
