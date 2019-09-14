@@ -1,0 +1,6 @@
+{
+  "name": "postgres",
+  "connector": "memory",
+  "localStorage": "persistance",
+  "file": "data"
+}
