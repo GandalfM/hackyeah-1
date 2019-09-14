@@ -5,9 +5,10 @@ import useCurrentPosition from '../../hooks/useCurrentPosition';
 import Marker from './marker';
 import NewBin from './new-bin';
 import BinDetails from './bin-details';
+import UserMenu from './user-menu';
 import useListBins from "../../hooks/useListBins";
 import { GarbageBin } from "../../client/src/models";
-import { StateProvider } from "../../context/state";
+import useLoggedInUserProfile from "../../hooks/useLoggedInUserProfile";
 
 const styles = StyleSheet.create({
     container: {
@@ -21,10 +22,12 @@ const styles = StyleSheet.create({
 });
 
 
-export function App() {
+export function MapViewScreen() {
     const { loading, data: location } = useCurrentPosition();
     const { loading: loadingList, data: binList } = useListBins();
-    const [binDetails, setBinDetails] = useState();
+    const { loading: loadingUser, data: loggedInUserProfile } = useLoggedInUserProfile();
+    const [binDetails, setBinDetails] = useState(undefined);
+
 
     if (loading) {
         return <Text>Loading </Text>;
@@ -39,7 +42,7 @@ export function App() {
     };
 
     return (
-        <View style={styles.container} >
+        <View style={styles.container}>
             <MapView
                 provider={PROVIDER_GOOGLE} // remove if not using Google Maps
                 style={styles.map}
@@ -50,15 +53,12 @@ export function App() {
                 {renderList()}
             </MapView>
             {!binDetails && <NewBin />}
-            {binDetails && <BinDetails id={binDetails} onRemove={() => {
-                setBinDetails(undefined)
-            }} />}
-        </View>
+            {
+                binDetails && <BinDetails id={binDetails} onRemove={() => {
+                    setBinDetails(undefined)
+                }} />
+            }
+            <UserMenu loggedInUser={loggedInUserProfile} loading={loadingUser} />
+        </View >
     );
 }
-
-export default () => (
-    <StateProvider>
-        <App />
-    </StateProvider>
-);

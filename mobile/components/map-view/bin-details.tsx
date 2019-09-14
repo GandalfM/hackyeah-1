@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
 });
 
 
-export default function BinDetails({ id, onRemove }: { id: number, onRemove: () => {} }) {
+export default function BinDetails({ id, onRemove }: { id: number, onRemove: () => void }) {
     const removeBin = useRemoveBin();
     return (
         <View style={styles.details} >
