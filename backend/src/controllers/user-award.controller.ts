@@ -106,4 +106,6 @@ export class UserAwardController {
   ): Promise<Count> {
     return this.userRepository.awards(id).delete(where);
   }
+
+
 }
