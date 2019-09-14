@@ -2,12 +2,12 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import MapView, { Marker, Overlay, PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
 import useCurrentPosition from './hooks/useCurrentPosition';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
 const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
-    height: 400,
-    width: 400,
     justifyContent: 'flex-end',
     alignItems: 'center',
   },
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 });
 
 
-export default function App() {
+const App = () => {
   const { loading, data: location } = useCurrentPosition();
 
   if (loading) {
@@ -26,7 +26,6 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text>Hello world!</Text>
       <MapView
         provider={PROVIDER_GOOGLE} // remove if not using Google Maps
         style={styles.map}
@@ -44,7 +43,14 @@ export default function App() {
             onPress={() => console.warn('asdl2')}
         /> */}
       </MapView>
-      <Text>wsdasda</Text>
     </View>
   );
 }
+
+const AppNavigator = createStackNavigator({
+  Map: {
+    screen: App,
+  },
+});
+
+export default createAppContainer(AppNavigator);
