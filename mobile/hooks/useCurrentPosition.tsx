@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import {GarbageBinControllerControllerApi} from "../client/src/apis";
 
 const LATITUDE_DELTA = 0.001;
 const LONGITUDE_DELTA = 0.001;
@@ -6,7 +7,10 @@ const LONGITUDE_DELTA = 0.001;
 
 export default () => {
     const [location, setLocation] = useState(undefined);
-
+    const api = new GarbageBinControllerControllerApi();
+    api.garbageBinControllerControllerFind({})
+        .then((result) => console.log('asda', result))
+        .catch(console.error);
     useEffect(() => {
         (async () => {
             navigator.geolocation.getCurrentPosition(
