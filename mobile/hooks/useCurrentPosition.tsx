@@ -1,29 +1,39 @@
 import React, { useEffect, useState } from 'react';
-import {GarbageBinControllerControllerApi} from "../client/src/apis";
 
 const LATITUDE_DELTA = 0.001;
 const LONGITUDE_DELTA = 0.001;
 
+interface Location {
+    latitude: number,
+    longitude: number,
+    latitudeDelta: number,
+    longitudeDelta: number,
+}
 
-export default () => {
-    const [location, setLocation] = useState(undefined);
-    const api = new GarbageBinControllerControllerApi();
-    api.garbageBinControllerControllerFind({})
-        .then((result) => console.log('asda', result))
-        .catch(console.error);
+export default (): {
+    loading: boolean, data: Location
+} => {
+    const [location, setLocation] = useState<Location>(undefined);
+
     useEffect(() => {
-        (async () => {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    const region = {
-                        latitude: position.coords.latitude,
-                        longitude: position.coords.longitude,
-                        latitudeDelta: LATITUDE_DELTA,
-                        longitudeDelta: LONGITUDE_DELTA,
-                    };
-                    setLocation(region);
-                });
-        })();
+        const watchId = navigator.geolocation.watchPosition(
+            (position) => {
+                const region = {
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                    latitudeDelta: LATITUDE_DELTA,
+                    longitudeDelta: LONGITUDE_DELTA,
+                };
+                setLocation(region);
+            }, (error) => console.error(error), {
+            timeout: 15000,
+            maximumAge: 60 * 1000,
+            enableHighAccuracy: true,
+        });
+
+        return () => {
+            navigator.geolocation.clearWatch(watchId);
+        }
     }, []);
 
     return {

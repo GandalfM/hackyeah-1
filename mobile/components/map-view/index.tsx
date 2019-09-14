@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
 import useCurrentPosition from '../../hooks/useCurrentPosition';
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
 });
 
 
-export default function App() {
+export function MapViewScreen() {
     const {loading, data: location} = useCurrentPosition();
     const {loading: loadingList, data: binList} = useListBins();
     const {loading: loadingUser, data: loggedInUserProfile} = useLoggedInUserProfile();
