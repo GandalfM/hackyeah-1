@@ -6,7 +6,6 @@ import Marker from './marker';
 import NewBin from './new-bin';
 import useListBins from "../../hooks/useListBins";
 import { GarbageBin } from "../../client/src/models";
-import { StateProvider } from "../../context/state";
 
 const styles = StyleSheet.create({
     container: {
@@ -20,7 +19,7 @@ const styles = StyleSheet.create({
 });
 
 
-export function App() {
+export function MapViewScreen() {
     const { loading, data: location } = useCurrentPosition();
     const { loading: loadingList, data: binList } = useListBins();
 
@@ -51,9 +50,3 @@ export function App() {
         </View>
     );
 }
-
-export default () => (
-    <StateProvider>
-        <App />
-    </StateProvider>
-);
