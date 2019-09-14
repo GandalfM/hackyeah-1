@@ -4,8 +4,10 @@ import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER
 import useCurrentPosition from '../../hooks/useCurrentPosition';
 import Marker from './marker';
 import NewBin from './new-bin';
+import UserMenu from './user-menu';
 import useListBins from "../../hooks/useListBins";
 import { GarbageBin } from "../../client/src/models";
+import useLoggedInUserProfile from "../../hooks/useLoggedInUserProfile";
 
 const styles = StyleSheet.create({
     container: {
@@ -22,6 +24,7 @@ const styles = StyleSheet.create({
 export default function App() {
     const { loading, data: location } = useCurrentPosition();
     const { loading: loadingList, data: binList } = useListBins();
+    const { loading: loadingUser, data: loggedInUserProfile } = useLoggedInUserProfile();
 
 
     if (loading) {
@@ -46,6 +49,7 @@ export default function App() {
             >
                 {renderList()}
             </MapView>
+            <UserMenu loggedInUser={loggedInUserProfile} loading={loadingUser}/>
             <NewBin />
         </View>
     );
