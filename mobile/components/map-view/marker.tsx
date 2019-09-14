@@ -20,11 +20,6 @@ export default function Marker({ location }) {
         coordinate={{ latitude: location.latitude, longitude: location.longitude }}
         title="Bla"
         description="bla2"
-        icon={{
-            uri: 'https://icon-library.net/images/trash-can-icon-png/trash-can-icon-png-28.jpg',
-            width: 5,
-            height: 100
-        }}
         onPress={() => console.warn('asdl2')}
     />
 }

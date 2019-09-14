@@ -33,11 +33,6 @@ export default function App() {
             >
                 <Marker
                     location={location}
-                // icon={{
-                //     uri: 'https://icon-library.net/images/trash-can-icon-png/trash-can-icon-png-28.jpg',
-                //     width: 5,
-                //     height: 100
-                // }}
                 />
             </MapView>
         </View>
