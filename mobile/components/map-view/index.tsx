@@ -68,7 +68,7 @@ export function MapViewScreen({ navigation }) {
                 >
                     {renderList()}
                 </MapView>
-                {!binDetails && <NewBin marginBottom="0" />}
+                {!binDetails && <NewBin enabled={loggedInUser !== null} marginBottom="0" />}
                 <UserMenu navigation={navigation} />
             </View >
         </>

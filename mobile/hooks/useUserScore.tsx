@@ -15,11 +15,11 @@ export default () => {
     const [state, dispatch] = useStateValue();
     useEffect(() => {
         (async () => {
-            awardApi.awardUserControllerGetUserSummary({id: state.loggedInUser.id})
+            awardApi.awardUserControllerGetUserSummary({id: parseInt(state.loggedInUser.id)})
                 .then((result) => {
                     setUserSummary(result);
                     console.log(result);
-                })
+                }, error => console.log(error))
                 .catch(console.error);
         })();
     }, []);

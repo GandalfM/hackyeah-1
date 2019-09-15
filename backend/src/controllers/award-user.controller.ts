@@ -70,7 +70,7 @@ export class AwardUserController {
       @param.path.number('id') id: typeof Award.prototype.id,
   ): Promise<{points: number, place: number}> {
     const awardsForUser = await this.userRepository.awards(id).find({});
-
+    console.log(awardsForUser);
     const allAwards = await this.awardRepository.find({});
 
     const points = awardsForUser.map(award => award.points).reduce((p, c) => p + c, 0);
@@ -83,7 +83,6 @@ export class AwardUserController {
             points: groupedBy[userId].map((award: any) => award.points).reduce((p: any, c: any) => p + c, 0)
           }
         });
-
     const ordered = orderBy(
         usersIdsWithPoints,
         (usersIdsWithPoints: any) => usersIdsWithPoints.points,

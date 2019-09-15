@@ -16,7 +16,7 @@ export default (): { loading: boolean, data: Array<TopUser>} => {
             awardApi.awardUserControllerGetTopTenUsers()
                 .then((result) => {
                     setTopUsers(result);
-                })
+                }, (error: any) => console.log(error))
                 .catch(console.error);
         })();
     }, []);
