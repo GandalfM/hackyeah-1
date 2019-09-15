@@ -12,6 +12,7 @@ import { AppLoading } from 'expo';
 import { BottomDrawer } from './bottom-drawer';
 import ClosestBins from './closest-bins';
 import useLogin from '../../hooks/useLogin';
+import useLoadListBins from '../../hooks/useLoadListBins';
 
 const MINIMAL_DRAWER = 50;
 const styles = StyleSheet.create({
@@ -29,6 +30,7 @@ export function MapViewScreen({ navigation }) {
     const { loading: loadingList, data: binList } = useListBins();
     const { data: loggedInUser } = useLogin();
     const [binDetails, setBinDetails] = useState(undefined);
+    useLoadListBins();
 
 
     if (loading) {
