@@ -29,6 +29,7 @@
     "docker:run": "docker run -p 3000:3000 -d backend",
     "migrate": "node ./dist/migrate",
     "start": "node .",
+    "startDev": "npm run build && node .",
     "prepublishOnly": "npm run test"
   },
   "repository": {

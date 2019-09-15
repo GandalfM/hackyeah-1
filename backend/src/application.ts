@@ -43,13 +43,16 @@ export class BackendApplication extends BootMixin(
     console.log('Env', process.env.ENVIRONMENT);
     if (process.env.ENVIRONMENT === 'prd') {
       const mongoUri = process.env.MONGO_URI;
-      let dbDataSource = new PostgresDataSource(      {
+
+      console.log('mongo uri', mongoUri);
+      this.bind('datasources.config.postgres').to({
         "connector": "mongodb",
         "url": mongoUri,
         "name": "postgres"
       });
-
-      this.dataSource(dbDataSource);
+      this.bind('datasources.postgres').toClass(PostgresDataSource);
+    } else {
+      console.log('not prd');
     }
   }
 }
