@@ -47,7 +47,7 @@ export function MapViewScreen({ navigation }) {
         return s.charAt(0).toUpperCase() + s.slice(1)
     };
 
-    const greeting = loggedInUser ? `Hi ${capitalize(loggedInUser.username)}, do you want to throw sth?` : '';
+    const greeting = loggedInUser ? `Hi ${capitalize(loggedInUser.username)}, wanna dispose of something?` : '';
     return (
         <>
             <BottomDrawer

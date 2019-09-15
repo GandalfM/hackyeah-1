@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     },
     greeting: {
         fontSize: 16,
+        lineHeight: 25,
     }
 });
 
