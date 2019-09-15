@@ -64,7 +64,7 @@ export function RankView() {
                 </View>
                 <ListItem icon>
                     <Left>
-                        <Button style={{backgroundColor: "#007AFF"}}>
+                        <Button style={{backgroundColor: "#000"}}>
                             <Icon active name="ios-pulse"/>
                         </Button>
                     </Left>
@@ -77,8 +77,8 @@ export function RankView() {
                 </ListItem>
                 <ListItem icon>
                     <Left>
-                        <Button style={{backgroundColor: "#FF9501"}}>
-                            <Icon active name="ios-flag"/>
+                        <Button style={{backgroundColor: "#000"}}>
+                            <Icon active name="ios-navigate"/>
                         </Button>
                     </Left>
                     <Body>

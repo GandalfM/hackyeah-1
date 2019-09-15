@@ -1,7 +1,6 @@
 import React from 'react';
-import { Button } from 'native-base';
+import { Fab, Icon } from 'native-base';
 import gravatar from 'gravatar';
-import { Image } from "react-native";
 import { useStateValue } from "../../context/state";
 import { NavigationActions } from "react-navigation";
 
@@ -16,10 +15,13 @@ export default function Marker({navigation}) {
     const {loggedInUser} = state;
     const avatarUrl = loggedInUser !== null ? `https:${gravatar.url(loggedInUser.email)}` : 'https://www.gravatar.com/avatar/?d=identicon';
     return (
-        loggedInUser && <Button
-            style={{width: 60, height: 60, borderRadius: 60 / 2, position: 'absolute', top: 50, right: 20}}
-            onPress={() => navigation.dispatch(navigateAction)}>
-            <Image style={{width: 60, height: 60, borderRadius: 60 / 2}} source={{uri: avatarUrl}}/>
-        </Button>
+        <Fab
+            direction="down"
+            style={{backgroundColor: '#000', top: 20}}
+            position="topLeft"
+            onPress={async () => navigation.dispatch(navigateAction)}>
+            <Icon name="ios-menu"/>
+        </Fab>
+
     );
 }

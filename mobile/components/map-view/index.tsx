@@ -42,12 +42,17 @@ export function MapViewScreen({ navigation }) {
             return binList.map((bin: GarbageBin) => <Marker key={bin.id} location={bin} onPress={() => { setBinDetails(bin.id) }} />)
         }
     };
+    const capitalize = (s) => {
+        if (typeof s !== 'string') return ''
+        return s.charAt(0).toUpperCase() + s.slice(1)
+    };
 
+    const greeting = loggedInUser ? `Hi ${capitalize(loggedInUser.username)}, do you want to throw sth?` : '';
     return (
         <>
             <BottomDrawer
                 minimalSize={MINIMAL_DRAWER}
-                headerText={binDetails ? `Bin ${binDetails}` : `Hi, do you want to throw sth?`}
+                headerText={binDetails ? `Bin ${binDetails}` : greeting}
             >
                 {binDetails ? <BinDetails id={binDetails} onRemove={() => {
                     setBinDetails(undefined)
