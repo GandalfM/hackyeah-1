@@ -22,8 +22,10 @@ export default function Marker({ navigation }) {
             direction="down"
             style={{ backgroundColor: '#000', top: 20 }}
             position="topLeft"
-            onPress={async () => isLogged ? navigation.dispatch(navigateAction) : login()}>
-            <Icon name="ios-menu" />
+            onPress={() => isLogged ? navigation.dispatch(navigateAction) : login()}  >
+            {
+                isLogged ? <Icon name="ios-menu" /> : <Icon name="ios-log-in" />
+            }
         </Fab>
 
     );
