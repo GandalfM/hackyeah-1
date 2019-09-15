@@ -1,21 +1,9 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, ScrollView, Linking, ToastAndroid } from 'react-native';
+import React from 'react';
+import { Linking, ToastAndroid } from 'react-native';
 import useListBins from '../../hooks/useListBins';
-import { Text, List, ListItem, Content } from 'native-base';
+import { Text, List, ListItem, Body, Left, Button, Icon } from 'native-base';
 import distance from '../../util/distance';
 import useCurrentPosition from '../../hooks/useCurrentPosition';
-import { GarbageBin } from '../../../backend/src/models';
-
-const styles = StyleSheet.create({
-    details: {
-        flexDirection: 'column',
-        flex: 1
-    },
-    list: {
-        flex: 1,
-        // width: '100%'
-    }
-});
 
 
 export default function ClosestBins({ }: {}) {
@@ -43,15 +31,22 @@ export default function ClosestBins({ }: {}) {
     const sorted = binList.map((bin) => ({ ...bin, distance: distance(bin.latitude, bin.longitude, location.latitude, location.longitude) })).sort((a, b) => a.distance - b.distance);
     console.log(binList);
     return (
-        <View style={styles.details} >
-            <List style={styles.list}>
-                <ListItem itemHeader first>
-                    <Text>Closest bins:</Text>
-                </ListItem>
-                {sorted.map((bin) => <ListItem key={bin.id} style={{ flex: 1 }} onPress={() => goToBin(bin)}><Text>{bin.distance.toPrecision(2)}m</Text></ListItem>)}
-
-            </List>
-        </View>
+        <List>
+            <ListItem itemHeader first>
+                <Text>Closest bins:</Text>
+            </ListItem>
+            {sorted.map((bin) =>
+                <ListItem icon key={bin.id} onPress={() => goToBin(bin)}>
+                    <Left>
+                        <Button style={{ backgroundColor: "black" }}>
+                            <Icon active name="airplane" />
+                        </Button>
+                    </Left>
+                    <Body>
+                        <Text>{bin.distance.toPrecision(2)}m</Text>
+                    </Body>
+                </ListItem>)}
+        </List>
     );
 }
 

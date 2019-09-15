@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         alignItems: 'center'
     },
-    content: { height: '100%', alignItems: 'flex-start', width: '100%', backgroundColor: 'white' },
+    content: { backgroundColor: 'white' },
     divider: {
         flex: 1,
         marginTop: 5,
@@ -28,8 +28,12 @@ export function BottomDrawer({ headerText, minimalSize, children }) {
     return (
         <BottomSheet
             snapPoints={['50%', 200, minimalSize]}
-            initialSnap={2}
-            renderContent={() => <View style={styles.content}>{children}</View>}
+            initialSnap={1}
+            renderContent={() =>
+                <View style={styles.content}>
+                    {children}
+                </View>
+            }
             renderHeader={() =>
                 <View style={styles.headerContainer}>
                     <H3>{headerText}</H3>
