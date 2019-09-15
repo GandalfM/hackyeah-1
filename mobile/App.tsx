@@ -12,35 +12,36 @@ import { Ionicons } from '@expo/vector-icons';
 YellowBox.ignoreWarnings(['Require cycle:']);
 
 const AppNavigator = createStackNavigator({
-
-  MapView: {
-    screen: MapViewScreen,
-  },
-  RankView: {
-    screen: RankView
-  }
-
+    MapView: {
+        screen: MapViewScreen,
+        navigationOptions: {
+            header: null,
+        },
+    },
+    RankView: {
+        screen: RankView
+    },
 });
 
 const Component = createAppContainer(AppNavigator);
 
 export default () => {
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    (async () => {
-      await Font.loadAsync({
-        Roboto: require('native-base/Fonts/Roboto.ttf'),
-        Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
-        ...Ionicons.font,
-      });
-      setIsLoading(false);
-    })();
-  }, []);
+    const [isLoading, setIsLoading] = useState(true);
+    useEffect(() => {
+        (async () => {
+            await Font.loadAsync({
+                Roboto: require('native-base/Fonts/Roboto.ttf'),
+                Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
+                ...Ionicons.font,
+            });
+            setIsLoading(false);
+        })();
+    }, []);
 
-  if (isLoading) {
-    return <AppLoading />;
-  }
-  return <StateProvider>
-    <Component />
-  </StateProvider>
+    if (isLoading) {
+        return <AppLoading/>;
+    }
+    return <StateProvider>
+        <Component/>
+    </StateProvider>
 };

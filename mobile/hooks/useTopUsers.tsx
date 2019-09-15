@@ -11,7 +11,6 @@ interface TopUser {
 
 export default (): { loading: boolean, data: Array<TopUser>} => {
     const [topUsers, setTopUsers] = useState(null);
-
     useEffect(() => {
         (async () => {
             awardApi.awardUserControllerGetTopTenUsers()
