@@ -17,7 +17,7 @@ export default function Marker({navigation}) {
     const avatarUrl = loggedInUser !== null ? `https:${gravatar.url(loggedInUser.email)}` : 'https://www.gravatar.com/avatar/?d=identicon';
     return (
         loggedInUser && <Button
-            style={{width: 60, height: 60, borderRadius: 60 / 2, position: 'absolute', top: 20, left: 20}}
+            style={{width: 60, height: 60, borderRadius: 60 / 2, position: 'absolute', top: 50, right: 20}}
             onPress={() => navigation.dispatch(navigateAction)}>
             <Image style={{width: 60, height: 60, borderRadius: 60 / 2}} source={{uri: avatarUrl}}/>
         </Button>

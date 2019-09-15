@@ -12,9 +12,13 @@ import {
 } from '../models';
 import {AwardRepository, UserRepository} from '../repositories';
 
+// @ts-ignore
 import groupBy = require('lodash/groupBy');
+// @ts-ignore
 import orderBy = require('lodash/orderBy');
+// @ts-ignore
 import findIndex = require('lodash/findIndex');
+// @ts-ignore
 import keyBy = require('lodash/keyBy');
 
 export class AwardUserController {
@@ -70,24 +74,22 @@ export class AwardUserController {
     const allAwards = await this.awardRepository.find({});
 
     const points = awardsForUser.map(award => award.points).reduce((p, c) => p + c, 0);
-
     const groupedBy = groupBy(allAwards, (award: Award) => award.userId);
     const usersIdsWithPoints = Object
         .keys(groupedBy)
         .map((userId) => {
           return {
             userId,
-            points: groupedBy[userId].map(award => award.points).reduce((p, c) => p + c, 0)
+            points: groupedBy[userId].map((award: any) => award.points).reduce((p: any, c: any) => p + c, 0)
           }
         });
 
     const ordered = orderBy(
         usersIdsWithPoints,
-        (usersIdsWithPoints) => usersIdsWithPoints.points,
+        (usersIdsWithPoints: any) => usersIdsWithPoints.points,
         ['desc']
     );
-
-    const place = findIndex(ordered, (value) => value.userId === id!.toString()) + 1;
+    const place = findIndex(ordered, (value: any) => value.userId === id!.toString()) + 1;
 
     return {
       points: points,
@@ -128,13 +130,13 @@ export class AwardUserController {
         .map((userId) => {
           return {
             userId,
-            points: groupedBy[userId].map(award => award.points).reduce((p, c) => p + c, 0)
+            points: groupedBy[userId].map((award: any) => award.points).reduce((p: any, c: any) => p + c, 0)
           }
         });
 
     const ordered = orderBy(
         usersIdsWithPoints,
-        (usersIdsWithPoints) => usersIdsWithPoints.points,
+        (usersIdsWithPoints: any) => usersIdsWithPoints.points,
         ['desc']
     );
 

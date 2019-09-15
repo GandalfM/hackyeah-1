@@ -10,23 +10,24 @@ import useListBins from "../../hooks/useListBins";
 import { GarbageBin } from "../../client/src/models";
 import useLoggedInUserProfile from "../../hooks/useLoggedInUserProfile";
 import { AppLoading } from 'expo';
+import { BottomDrawer } from './bottom-drawer';
+import ClosestBins from './closest-bins';
 
+const MINIMAL_DRAWER = 50;
 const styles = StyleSheet.create({
     container: {
-        ...StyleSheet.absoluteFillObject,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
+        flex: 1,
+        marginBottom: MINIMAL_DRAWER,
     },
     map: {
-        ...StyleSheet.absoluteFillObject,
+        flex: 1
     },
 });
 
-
-export function MapViewScreen({navigation}) {
-    const {loading, data: location} = useCurrentPosition();
-    const {loading: loadingList, data: binList} = useListBins();
-    const { data: loggedInUser, loading: loadingLoggedInUser } = useLoggedInUserProfile("mateusz.szerszynski@gmail.com");
+export function MapViewScreen({ navigation }) {
+    const { loading, data: location } = useCurrentPosition();
+    const { loading: loadingList, data: binList } = useListBins();
+    const { data: loggedInUser, loading: loadingLoggedInUser } = useLoggedInUserProfile("zakhttp@gmail.com");
     const [binDetails, setBinDetails] = useState(undefined);
 
 
@@ -43,23 +44,28 @@ export function MapViewScreen({navigation}) {
     };
 
     return (
-        <View style={styles.container}>
-            <MapView
-                provider={PROVIDER_GOOGLE} // remove if not using Google Maps
-                style={styles.map}
-                initialRegion={location}
-                showsUserLocation
-                onPress={() => setBinDetails(undefined)}
+        <>
+            <BottomDrawer
+                minimalSize={MINIMAL_DRAWER}
+                headerText={binDetails ? `Bin ${binDetails}` : `Hi, do you want to throw sth?`}
             >
-                {renderList()}
-            </MapView>
-            {!binDetails && <NewBin />}
-            {
-                binDetails && <BinDetails id={binDetails} onRemove={() => {
+                {binDetails ? <BinDetails id={binDetails} onRemove={() => {
                     setBinDetails(undefined)
-                }} />
-            }
-            <UserMenu navigation={navigation} />
-        </View >
+                }} /> : <ClosestBins />}
+            </BottomDrawer>
+            <View style={styles.container}>
+                <MapView
+                    provider={PROVIDER_GOOGLE} // remove if not using Google Maps
+                    style={styles.map}
+                    initialRegion={location}
+                    showsUserLocation
+                    onPress={() => setBinDetails(undefined)}
+                >
+                    {renderList()}
+                </MapView>
+                {!binDetails && <NewBin />}
+                <UserMenu navigation={navigation} />
+            </View >
+        </>
     );
 }
