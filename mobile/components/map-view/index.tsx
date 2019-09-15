@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
 export function MapViewScreen({ navigation }) {
     const { loading, data: location } = useCurrentPosition();
     const { loading: loadingList, data: binList } = useListBins();
-    const { data: loggedInUser, loading: loadingLoggedInUser } = useLoggedInUserProfile("mateusz.szerszynski@gmail.com");
+    const { data: loggedInUser, loading: loadingLoggedInUser } = useLoggedInUserProfile("zakhttp@gmail.com");
     const [binDetails, setBinDetails] = useState(undefined);
 
 
