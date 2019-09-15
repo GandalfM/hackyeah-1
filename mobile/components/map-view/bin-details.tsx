@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
 export default function BinDetails({ id, onRemove }: { id: number, onRemove: () => void }) {
     const removeBin = useRemoveBin();
     return (
-        <View style={styles.details} >
+        <>
             <Text>Bin of number {id}</Text>
             <ScrollView style={styles.actionBar} horizontal showsHorizontalScrollIndicator={false}>
                 <View style={styles.buttonContainer}>
@@ -41,7 +41,7 @@ export default function BinDetails({ id, onRemove }: { id: number, onRemove: () 
                     </Button>
                 </View>
             </ScrollView>
-        </View>
+        </>
     );
 }
 
