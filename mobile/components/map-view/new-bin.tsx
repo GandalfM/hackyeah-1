@@ -7,17 +7,6 @@ import { GarbageBin } from "../../client/src/models";
 import { Linking } from "react-native";
 import distance from '../../util/distance';
 
-function findClosestBin(userLocation: { latitude: number, longitude: number }, bins: GarbageBin[]) {
-    const binsWithDistances = bins.map(bin => (
-        {
-            bin,
-            distance: distance(bin.latitude, bin.longitude, userLocation.latitude, userLocation.longitude)
-        }));
-    binsWithDistances.sort((bin1, bin2) => bin1.distance - bin2.distance);
-
-    return binsWithDistances[0];
-}
-
 export default function NewBin({ }) {
     const { loading, data } = useCurrentPosition();
     const addNewBin = useAddNewBin();
