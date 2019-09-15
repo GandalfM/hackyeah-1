@@ -9,39 +9,39 @@ import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 
-YellowBox.ignoreWarnings(['Require cycle:']);
+YellowBox.ignoreWarnings(['Require cycle:', "You are not currently signed in to Expo on your development machine"]);
 
 const AppNavigator = createStackNavigator({
-    MapView: {
-        screen: MapViewScreen,
-        navigationOptions: {
-            header: null,
-        },
+  MapView: {
+    screen: MapViewScreen,
+    navigationOptions: {
+      header: null,
     },
-    RankView: {
-        screen: RankView
-    },
+  },
+  RankView: {
+    screen: RankView
+  },
 });
 
 const Component = createAppContainer(AppNavigator);
 
 export default () => {
-    const [isLoading, setIsLoading] = useState(true);
-    useEffect(() => {
-        (async () => {
-            await Font.loadAsync({
-                Roboto: require('native-base/Fonts/Roboto.ttf'),
-                Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
-                ...Ionicons.font,
-            });
-            setIsLoading(false);
-        })();
-    }, []);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    (async () => {
+      await Font.loadAsync({
+        Roboto: require('native-base/Fonts/Roboto.ttf'),
+        Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
+        ...Ionicons.font,
+      });
+      setIsLoading(false);
+    })();
+  }, []);
 
-    if (isLoading) {
-        return <AppLoading/>;
-    }
-    return <StateProvider>
-        <Component/>
-    </StateProvider>
+  if (isLoading) {
+    return <AppLoading />;
+  }
+  return <StateProvider>
+    <Component />
+  </StateProvider>
 };

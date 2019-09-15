@@ -8,7 +8,6 @@ import BinDetails from './bin-details';
 import UserMenu from './user-menu';
 import useListBins from "../../hooks/useListBins";
 import { GarbageBin } from "../../client/src/models";
-import useLoggedInUserProfile from "../../hooks/useLoggedInUserProfile";
 import { AppLoading } from 'expo';
 import { BottomDrawer } from './bottom-drawer';
 import ClosestBins from './closest-bins';
@@ -27,7 +26,6 @@ const styles = StyleSheet.create({
 export function MapViewScreen({ navigation }) {
     const { loading, data: location } = useCurrentPosition();
     const { loading: loadingList, data: binList } = useListBins();
-    const { data: loggedInUser, loading: loadingLoggedInUser } = useLoggedInUserProfile("zakhttp@gmail.com");
     const [binDetails, setBinDetails] = useState(undefined);
 
 

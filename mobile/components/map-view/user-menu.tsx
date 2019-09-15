@@ -4,22 +4,25 @@ import gravatar from 'gravatar';
 import { Image } from "react-native";
 import { useStateValue } from "../../context/state";
 import { NavigationActions } from "react-navigation";
+import useLogin from '../../hooks/useLogin';
 
 const navigateAction = NavigationActions.navigate({
     routeName: 'RankView',
     params: {},
-    action: NavigationActions.navigate({routeName: 'RankView'}),
+    action: NavigationActions.navigate({ routeName: 'RankView' }),
 });
 
-export default function Marker({navigation}) {
+export default function Marker({ navigation }) {
     const [state] = useStateValue();
-    const {loggedInUser} = state;
+    const { isLogged, login } = useLogin();
+    const { loggedInUser } = state;
     const avatarUrl = loggedInUser !== null ? `https:${gravatar.url(loggedInUser.email)}` : 'https://www.gravatar.com/avatar/?d=identicon';
+
     return (
-        loggedInUser && <Button
-            style={{width: 60, height: 60, borderRadius: 60 / 2, position: 'absolute', top: 50, right: 20}}
-            onPress={() => navigation.dispatch(navigateAction)}>
-            <Image style={{width: 60, height: 60, borderRadius: 60 / 2}} source={{uri: avatarUrl}}/>
+        <Button
+            style={{ width: 60, height: 60, borderRadius: 60 / 2, position: 'absolute', top: 50, right: 20 }}
+            onPress={() => isLogged ? navigation.dispatch(navigateAction) : login()}>
+            <Image style={{ width: 60, height: 60, borderRadius: 60 / 2 }} source={{ uri: avatarUrl }} />
         </Button>
     );
 }
