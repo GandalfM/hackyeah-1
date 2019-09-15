@@ -16,14 +16,14 @@ export class GarbageBin extends Entity {
   longitude: number;
 
   @property({
-    type: 'number',
+    type: 'string',
     id: true,
     generated: true,
   })
-  id: number;
+  id: string;
 
   @belongsTo(() => User)
-  userId: number;
+  userId: string;
 
   @property({
     type: 'number',
