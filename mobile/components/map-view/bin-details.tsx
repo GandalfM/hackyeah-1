@@ -43,9 +43,10 @@ export default function BinDetails({ id, bin, onRemove }: { id: number, bin: Gar
                 </View>
 
                 <View style={styles.buttonContainer}>
-                    <Button light iconLeft onPress={async () => {
-                        await removeBin(id);
-                        onRemove();
+                    <Button light disabled iconLeft onPress={async () => {
+                        null;
+                        // await removeBin(id);
+                        // onRemove();
                     }}>
                         <Icon dark name='thumbs-down' />
                         <Text dark>Bin is missing</Text>
