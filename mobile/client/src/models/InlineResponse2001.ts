@@ -23,13 +23,7 @@ export interface InlineResponse2001 {
      * @type {number}
      * @memberof InlineResponse2001
      */
-    sum?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof InlineResponse2001
-     */
-    place?: number;
+    count?: number;
 }
 
 export function InlineResponse2001FromJSON(json: any): InlineResponse2001 {
@@ -42,8 +36,7 @@ export function InlineResponse2001FromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'sum': !exists(json, 'sum') ? undefined : json['sum'],
-        'place': !exists(json, 'place') ? undefined : json['place'],
+        'count': !exists(json, 'count') ? undefined : json['count'],
     };
 }
 
@@ -56,8 +49,7 @@ export function InlineResponse2001ToJSON(value?: InlineResponse2001): any {
     }
     return {
         
-        'sum': value.sum,
-        'place': value.place,
+        'count': value.count,
     };
 }
 

@@ -23,13 +23,13 @@ export interface InlineResponse200 {
      * @type {number}
      * @memberof InlineResponse200
      */
-    points?: number;
+    sum?: number;
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof InlineResponse200
      */
-    userId?: string;
+    place?: number;
 }
 
 export function InlineResponse200FromJSON(json: any): InlineResponse200 {
@@ -42,8 +42,8 @@ export function InlineResponse200FromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
-        'points': !exists(json, 'points') ? undefined : json['points'],
-        'userId': !exists(json, 'userId') ? undefined : json['userId'],
+        'sum': !exists(json, 'sum') ? undefined : json['sum'],
+        'place': !exists(json, 'place') ? undefined : json['place'],
     };
 }
 
@@ -56,8 +56,8 @@ export function InlineResponse200ToJSON(value?: InlineResponse200): any {
     }
     return {
         
-        'points': value.points,
-        'userId': value.userId,
+        'sum': value.sum,
+        'place': value.place,
     };
 }
 

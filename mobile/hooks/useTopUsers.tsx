@@ -1,8 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { GarbageBin } from "../client/src/models";
+import React, {useEffect, useState} from 'react';
 import {awardApi} from '../api';
 
-export default (): { loading: boolean, data: GarbageBin[] } => {
+interface TopUser {
+    points: number,
+    userId: string
+    username: string,
+    avatarUrl: string,
+    email: string
+}
+
+export default (): { loading: boolean, data: Array<TopUser>} => {
     const [topUsers, setTopUsers] = useState(null);
 
     useEffect(() => {

@@ -20,10 +20,28 @@ import { exists, mapValues } from '../runtime';
 export interface InlineResponse2002 {
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof InlineResponse2002
      */
-    count?: number;
+    greeting?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2002
+     */
+    date?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2002
+     */
+    url?: string;
+    /**
+     * 
+     * @type {{ [key: string]: object; }}
+     * @memberof InlineResponse2002
+     */
+    headers?: { [key: string]: object; };
 }
 
 export function InlineResponse2002FromJSON(json: any): InlineResponse2002 {
@@ -36,7 +54,10 @@ export function InlineResponse2002FromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'count': !exists(json, 'count') ? undefined : json['count'],
+        'greeting': !exists(json, 'greeting') ? undefined : json['greeting'],
+        'date': !exists(json, 'date') ? undefined : json['date'],
+        'url': !exists(json, 'url') ? undefined : json['url'],
+        'headers': !exists(json, 'headers') ? undefined : json['headers'],
     };
 }
 
@@ -49,7 +70,10 @@ export function InlineResponse2002ToJSON(value?: InlineResponse2002): any {
     }
     return {
         
-        'count': value.count,
+        'greeting': value.greeting,
+        'date': value.date,
+        'url': value.url,
+        'headers': value.headers,
     };
 }
 

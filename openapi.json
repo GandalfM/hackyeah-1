@@ -18,13 +18,24 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "points": {
-                      "type": "number"
-                    },
-                    "userId": {
-                      "type": "string"
+                  "type": "array",
+                  "items": {
+                    "properties": {
+                      "points": {
+                        "type": "number"
+                      },
+                      "userId": {
+                        "type": "string"
+                      },
+                      "avatarUrl": {
+                        "type": "string"
+                      },
+                      "username": {
+                        "type": "string"
+                      },
+                      "email": {
+                        "type": "string"
+                      }
                     }
                   }
                 }

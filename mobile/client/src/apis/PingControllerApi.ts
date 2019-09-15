@@ -14,9 +14,9 @@
 
 import * as runtime from '../runtime';
 import {
-    InlineResponse2003,
-    InlineResponse2003FromJSON,
-    InlineResponse2003ToJSON,
+    InlineResponse2002,
+    InlineResponse2002FromJSON,
+    InlineResponse2002ToJSON,
 } from '../models';
 
 /**
@@ -26,7 +26,7 @@ export class PingControllerApi extends runtime.BaseAPI {
 
     /**
      */
-    async pingControllerPingRaw(): Promise<runtime.ApiResponse<InlineResponse2003>> {
+    async pingControllerPingRaw(): Promise<runtime.ApiResponse<InlineResponse2002>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -38,12 +38,12 @@ export class PingControllerApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => InlineResponse2003FromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => InlineResponse2002FromJSON(jsonValue));
     }
 
    /**
     */
-    async pingControllerPing(): Promise<InlineResponse2003> {
+    async pingControllerPing(): Promise<InlineResponse2002> {
         const response = await this.pingControllerPingRaw();
         return await response.value();
     }

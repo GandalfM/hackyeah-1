@@ -15,6 +15,7 @@ import {AwardRepository, UserRepository} from '../repositories';
 import groupBy = require('lodash/groupBy');
 import orderBy = require('lodash/orderBy');
 import findIndex = require('lodash/findIndex');
+import keyBy = require('lodash/keyBy');
 
 export class AwardUserController {
   constructor(
@@ -102,11 +103,15 @@ export class AwardUserController {
         content: {
           'application/json': {
             schema: {
-              type: 'object',
-              properties: {
-                points: {type: 'number'},
-                userId: {type: 'string'},
-              },
+              type: 'array',
+              items: {properties: {
+                  points: {type: 'number'},
+                  userId: {type: 'string'},
+                  avatarUrl: {type: 'string'},
+                  username: {type: 'string'},
+                  email: {type: 'string'},
+                }}
+,
             },
           },
         },
@@ -114,7 +119,7 @@ export class AwardUserController {
     },
   })
   async getTopTenUsers(
-  ): Promise<Array<{points: number, userId: string}>> {
+  ): Promise<Array<{points: number, userId: string, avatarUrl: string, username: string, email: string}>> {
     const allAwards = await this.awardRepository.find({});
 
     const groupedBy = groupBy(allAwards, (award: Award) => award.userId);
@@ -133,9 +138,21 @@ export class AwardUserController {
         ['desc']
     );
 
+    const users = await this.userRepository.find({});
+    const userMap = keyBy(users, 'id');
+
+    const topTen = [...ordered.slice(0, 10)];
 
     //TODO: map to user id of type number not string!
-    return ordered.slice(0, 10);
+    return topTen.map(v => {
+      const {avatarUrl, username, email} = userMap[v.userId];
+        return {
+          ...v,
+          avatarUrl,
+          username,
+          email
+        }
+    });
   }
 
 }

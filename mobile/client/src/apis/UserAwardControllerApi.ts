@@ -23,9 +23,9 @@ import {
     AwardPartial,
     AwardPartialFromJSON,
     AwardPartialToJSON,
-    InlineResponse2002,
-    InlineResponse2002FromJSON,
-    InlineResponse2002ToJSON,
+    InlineResponse2001,
+    InlineResponse2001FromJSON,
+    InlineResponse2001ToJSON,
 } from '../models';
 
 export interface UserAwardControllerCreateRequest {
@@ -87,7 +87,7 @@ export class UserAwardControllerApi extends runtime.BaseAPI {
 
     /**
      */
-    async userAwardControllerDeleteRaw(requestParameters: UserAwardControllerDeleteRequest): Promise<runtime.ApiResponse<InlineResponse2002>> {
+    async userAwardControllerDeleteRaw(requestParameters: UserAwardControllerDeleteRequest): Promise<runtime.ApiResponse<InlineResponse2001>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling userAwardControllerDelete.');
         }
@@ -107,12 +107,12 @@ export class UserAwardControllerApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => InlineResponse2002FromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => InlineResponse2001FromJSON(jsonValue));
     }
 
    /**
     */
-    async userAwardControllerDelete(requestParameters: UserAwardControllerDeleteRequest): Promise<InlineResponse2002> {
+    async userAwardControllerDelete(requestParameters: UserAwardControllerDeleteRequest): Promise<InlineResponse2001> {
         const response = await this.userAwardControllerDeleteRaw(requestParameters);
         return await response.value();
     }
@@ -151,7 +151,7 @@ export class UserAwardControllerApi extends runtime.BaseAPI {
 
     /**
      */
-    async userAwardControllerPatchRaw(requestParameters: UserAwardControllerPatchRequest): Promise<runtime.ApiResponse<InlineResponse2002>> {
+    async userAwardControllerPatchRaw(requestParameters: UserAwardControllerPatchRequest): Promise<runtime.ApiResponse<InlineResponse2001>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling userAwardControllerPatch.');
         }
@@ -174,12 +174,12 @@ export class UserAwardControllerApi extends runtime.BaseAPI {
             body: AwardPartialToJSON(requestParameters.awardPartial),
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => InlineResponse2002FromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => InlineResponse2001FromJSON(jsonValue));
     }
 
    /**
     */
-    async userAwardControllerPatch(requestParameters: UserAwardControllerPatchRequest): Promise<InlineResponse2002> {
+    async userAwardControllerPatch(requestParameters: UserAwardControllerPatchRequest): Promise<InlineResponse2001> {
         const response = await this.userAwardControllerPatchRaw(requestParameters);
         return await response.value();
     }

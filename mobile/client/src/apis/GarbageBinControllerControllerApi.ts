@@ -23,9 +23,9 @@ import {
     GarbageBinPartial,
     GarbageBinPartialFromJSON,
     GarbageBinPartialToJSON,
-    InlineResponse2002,
-    InlineResponse2002FromJSON,
-    InlineResponse2002ToJSON,
+    InlineResponse2001,
+    InlineResponse2001FromJSON,
+    InlineResponse2001ToJSON,
 } from '../models';
 
 export interface GarbageBinControllerControllerCountRequest {
@@ -70,7 +70,7 @@ export class GarbageBinControllerControllerApi extends runtime.BaseAPI {
 
     /**
      */
-    async garbageBinControllerControllerCountRaw(requestParameters: GarbageBinControllerControllerCountRequest): Promise<runtime.ApiResponse<InlineResponse2002>> {
+    async garbageBinControllerControllerCountRaw(requestParameters: GarbageBinControllerControllerCountRequest): Promise<runtime.ApiResponse<InlineResponse2001>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         if (requestParameters.where !== undefined) {
@@ -86,12 +86,12 @@ export class GarbageBinControllerControllerApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => InlineResponse2002FromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => InlineResponse2001FromJSON(jsonValue));
     }
 
    /**
     */
-    async garbageBinControllerControllerCount(requestParameters: GarbageBinControllerControllerCountRequest): Promise<InlineResponse2002> {
+    async garbageBinControllerControllerCount(requestParameters: GarbageBinControllerControllerCountRequest): Promise<InlineResponse2001> {
         const response = await this.garbageBinControllerControllerCountRaw(requestParameters);
         return await response.value();
     }
@@ -238,7 +238,7 @@ export class GarbageBinControllerControllerApi extends runtime.BaseAPI {
 
     /**
      */
-    async garbageBinControllerControllerUpdateAllRaw(requestParameters: GarbageBinControllerControllerUpdateAllRequest): Promise<runtime.ApiResponse<InlineResponse2002>> {
+    async garbageBinControllerControllerUpdateAllRaw(requestParameters: GarbageBinControllerControllerUpdateAllRequest): Promise<runtime.ApiResponse<InlineResponse2001>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         if (requestParameters.where !== undefined) {
@@ -257,12 +257,12 @@ export class GarbageBinControllerControllerApi extends runtime.BaseAPI {
             body: GarbageBinPartialToJSON(requestParameters.garbageBinPartial),
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => InlineResponse2002FromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => InlineResponse2001FromJSON(jsonValue));
     }
 
    /**
     */
-    async garbageBinControllerControllerUpdateAll(requestParameters: GarbageBinControllerControllerUpdateAllRequest): Promise<InlineResponse2002> {
+    async garbageBinControllerControllerUpdateAll(requestParameters: GarbageBinControllerControllerUpdateAllRequest): Promise<InlineResponse2001> {
         const response = await this.garbageBinControllerControllerUpdateAllRaw(requestParameters);
         return await response.value();
     }

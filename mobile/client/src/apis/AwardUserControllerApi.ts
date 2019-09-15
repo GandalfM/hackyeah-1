@@ -17,9 +17,6 @@ import {
     InlineResponse200,
     InlineResponse200FromJSON,
     InlineResponse200ToJSON,
-    InlineResponse2001,
-    InlineResponse2001FromJSON,
-    InlineResponse2001ToJSON,
     User,
     UserFromJSON,
     UserToJSON,
@@ -40,7 +37,7 @@ export class AwardUserControllerApi extends runtime.BaseAPI {
 
     /**
      */
-    async awardUserControllerGetTopTenUsersRaw(): Promise<runtime.ApiResponse<InlineResponse200>> {
+    async awardUserControllerGetTopTenUsersRaw(): Promise<runtime.ApiResponse<Array<object>>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -52,12 +49,12 @@ export class AwardUserControllerApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => InlineResponse200FromJSON(jsonValue));
+        return new runtime.JSONApiResponse<any>(response);
     }
 
    /**
     */
-    async awardUserControllerGetTopTenUsers(): Promise<InlineResponse200> {
+    async awardUserControllerGetTopTenUsers(): Promise<Array<object>> {
         const response = await this.awardUserControllerGetTopTenUsersRaw();
         return await response.value();
     }
@@ -92,7 +89,7 @@ export class AwardUserControllerApi extends runtime.BaseAPI {
 
     /**
      */
-    async awardUserControllerGetUserSummaryRaw(requestParameters: AwardUserControllerGetUserSummaryRequest): Promise<runtime.ApiResponse<InlineResponse2001>> {
+    async awardUserControllerGetUserSummaryRaw(requestParameters: AwardUserControllerGetUserSummaryRequest): Promise<runtime.ApiResponse<InlineResponse200>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling awardUserControllerGetUserSummary.');
         }
@@ -108,12 +105,12 @@ export class AwardUserControllerApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => InlineResponse2001FromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => InlineResponse200FromJSON(jsonValue));
     }
 
    /**
     */
-    async awardUserControllerGetUserSummary(requestParameters: AwardUserControllerGetUserSummaryRequest): Promise<InlineResponse2001> {
+    async awardUserControllerGetUserSummary(requestParameters: AwardUserControllerGetUserSummaryRequest): Promise<InlineResponse200> {
         const response = await this.awardUserControllerGetUserSummaryRaw(requestParameters);
         return await response.value();
     }
