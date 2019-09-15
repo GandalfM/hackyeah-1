@@ -12,6 +12,7 @@ import { AppLoading } from 'expo';
 import { BottomDrawer } from './bottom-drawer';
 import ClosestBins from './closest-bins';
 import useLogin from '../../hooks/useLogin';
+import useLoadListBins from '../../hooks/useLoadListBins';
 
 const MINIMAL_DRAWER = 50;
 const styles = StyleSheet.create({
@@ -29,6 +30,7 @@ export function MapViewScreen({ navigation }) {
     const { loading: loadingList, data: binList } = useListBins();
     const { data: loggedInUser } = useLogin();
     const [binDetails, setBinDetails] = useState(undefined);
+    useLoadListBins();
 
 
     if (loading) {
@@ -39,7 +41,7 @@ export function MapViewScreen({ navigation }) {
         if (loadingList) {
             return null;
         } else {
-            return binList.map((bin: GarbageBin) => <Marker key={bin.id} location={bin} onPress={() => { setBinDetails(bin.id) }} />)
+            return binList.map((bin: GarbageBin) => <Marker key={`${bin.id}-${bin.id === binDetails}`} isSelected={bin.id === binDetails} location={bin} onPress={() => { setBinDetails(bin.id) }} />)
         }
     };
     const capitalize = (s) => {
@@ -54,7 +56,7 @@ export function MapViewScreen({ navigation }) {
                 minimalSize={MINIMAL_DRAWER}
                 headerText={binDetails ? `Bin ${binDetails}` : greeting}
             >
-                {binDetails ? <BinDetails id={binDetails} onRemove={() => {
+                {binDetails ? <BinDetails id={binDetails} bin={binList.find(({ id }) => id === binDetails)} onRemove={() => {
                     setBinDetails(undefined)
                 }} /> : <ClosestBins />}
             </BottomDrawer>

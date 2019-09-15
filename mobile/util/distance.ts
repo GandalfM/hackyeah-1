@@ -9,3 +9,12 @@ export default function distance(lat1, lon1, lat2, lon2): number {
     var d = R * c;
     return d * 1000;
 }
+
+export function niceLookingDistance(lat1, lon1, lat2, lon2): string {
+    const dist = distance(lat1, lon1, lat2, lon2);
+    if (dist > 10) {
+        return dist.toFixed(0);
+
+    }
+    return dist.toFixed(2);
+}

@@ -11,10 +11,12 @@ interface Location {
     longitudeDelta: number,
 }
 
+let CACHED_LOCATION = undefined;
+
 export default (): {
-    loading: boolean, data: Location
+    loading: boolean, data: Location | undefined
 } => {
-    const [location, setLocation] = useState<Location>(undefined);
+    const [location, setLocation] = useState(CACHED_LOCATION ? CACHED_LOCATION : undefined);
 
     useEffect(() => {
 
@@ -30,10 +32,11 @@ export default (): {
                         longitudeDelta: LONGITUDE_DELTA,
                     };
                     setLocation(region);
+                    CACHED_LOCATION = region;
                 }, (error) => console.error(error), {
                 timeout: 15000,
                 maximumAge: 60 * 1000,
-                // enableHighAccuracy: true,
+                enableHighAccuracy: true,
             });
 
         })();
