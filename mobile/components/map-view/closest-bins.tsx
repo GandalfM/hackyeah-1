@@ -38,8 +38,8 @@ export default function ClosestBins({ }: {}) {
             {sorted.map((bin) =>
                 <ListItem icon key={bin.id} onPress={() => goToBin(bin)}>
                     <Left>
-                        <Button style={{ backgroundColor: "black" }}>
-                            <Icon active name="airplane" />
+                        <Button style={{ backgroundColor: "grey" }}>
+                            <Icon active name="ios-compass" />
                         </Button>
                     </Left>
                     <Body>
