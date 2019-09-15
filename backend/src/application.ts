@@ -9,6 +9,7 @@ import {RestApplication} from '@loopback/rest';
 import {ServiceMixin} from '@loopback/service-proxy';
 import * as path from 'path';
 import {MySequence} from './sequence';
+import {PostgresDataSource} from "./datasources";
 
 export class BackendApplication extends BootMixin(
   ServiceMixin(RepositoryMixin(RestApplication)),
@@ -38,5 +39,17 @@ export class BackendApplication extends BootMixin(
         nested: true,
       },
     };
+
+    console.log('Env', process.env.ENVIRONMENT);
+    if (process.env.ENVIRONMENT === 'prd') {
+      const mongoUri = process.env.MONGO_URI;
+      let dbDataSource = new PostgresDataSource(      {
+        "connector": "mongodb",
+        "url": mongoUri,
+        "name": "postgres"
+      });
+
+      this.dataSource(dbDataSource);
+    }
   }
 }
