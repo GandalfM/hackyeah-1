@@ -41,7 +41,7 @@ export function MapViewScreen({ navigation }) {
         if (loadingList) {
             return null;
         } else {
-            return binList.map((bin: GarbageBin) => <Marker key={bin.id} location={bin} onPress={() => { setBinDetails(bin.id) }} />)
+            return binList.map((bin: GarbageBin) => <Marker key={`${bin.id}-${bin.id === binDetails}`} isSelected={bin.id === binDetails} location={bin} onPress={() => { setBinDetails(bin.id) }} />)
         }
     };
     const capitalize = (s) => {
