@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import * as Permissions from 'expo-permissions';
 
 const LATITUDE_DELTA = 0.001;
 const LONGITUDE_DELTA = 0.001;
@@ -16,23 +17,31 @@ export default (): {
     const [location, setLocation] = useState<Location>(undefined);
 
     useEffect(() => {
-        const watchId = navigator.geolocation.watchPosition(
-            (position) => {
-                const region = {
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude,
-                    latitudeDelta: LATITUDE_DELTA,
-                    longitudeDelta: LONGITUDE_DELTA,
-                };
-                setLocation(region);
-            }, (error) => console.error(error), {
-            timeout: 15000,
-            maximumAge: 60 * 1000,
-            enableHighAccuracy: true,
-        });
+
+        let watchId = -1;
+        (async () => {
+            await Permissions.askAsync(Permissions.LOCATION);
+            watchId = navigator.geolocation.watchPosition(
+                (position) => {
+                    const region = {
+                        latitude: position.coords.latitude,
+                        longitude: position.coords.longitude,
+                        latitudeDelta: LATITUDE_DELTA,
+                        longitudeDelta: LONGITUDE_DELTA,
+                    };
+                    setLocation(region);
+                }, (error) => console.error(error), {
+                timeout: 15000,
+                maximumAge: 60 * 1000,
+                // enableHighAccuracy: true,
+            });
+
+        })();
 
         return () => {
-            navigator.geolocation.clearWatch(watchId);
+            if (watchId) {
+                navigator.geolocation.clearWatch(watchId);
+            }
         }
     }, []);
 
