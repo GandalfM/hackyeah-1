@@ -53,10 +53,9 @@ export function RankView({ navigation }) {
     const { loading: loadingSummary, data: userSummary } = useUserScore();
     const { loading: loadingBins, data: bins } = useListBins();
     const { logout } = useLogin();
-
     const { loggedInUser } = state;
     const avatarUrl = loggedInUser !== null ? `https:${gravatar.url(loggedInUser.email)}` : 'https://www.gravatar.com/avatar/?d=identicon';
-    const reportedBinsCount = bins ? bins.filter(bin => bin.userId === loggedInUser.id).length : 1;
+    const reportedBinsCount = bins ? bins.filter(bin => bin.userId === loggedInUser.id.toString()).length : 1;
 
     return (
         <Swiper style={styles.wrapper}>

@@ -32,16 +32,16 @@ export interface GarbageBinPartial {
     longitude?: number;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof GarbageBinPartial
      */
-    id?: number;
+    id?: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof GarbageBinPartial
      */
-    userId?: number;
+    userId?: string;
     /**
      * 
      * @type {number}

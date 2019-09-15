@@ -20,7 +20,7 @@ import {
 } from '../models';
 
 export interface AwardGarbageBinControllerGetGarbageBinRequest {
-    id: number;
+    id: string;
 }
 
 /**

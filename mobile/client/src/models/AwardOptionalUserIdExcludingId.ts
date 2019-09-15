@@ -26,16 +26,16 @@ export interface AwardOptionalUserIdExcludingId {
     points: number;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof AwardOptionalUserIdExcludingId
      */
-    userId?: number;
+    userId?: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof AwardOptionalUserIdExcludingId
      */
-    garbageBinId?: number;
+    garbageBinId?: string;
 }
 
 export function AwardOptionalUserIdExcludingIdFromJSON(json: any): AwardOptionalUserIdExcludingId {

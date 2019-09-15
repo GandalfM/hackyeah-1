@@ -57,7 +57,7 @@ export class AwardUserController {
             schema: {
               type: 'object',
               properties: {
-                sum: {type: 'number'},
+                points: {type: 'number'},
                 place: {type: 'number'},
                 },
             },
@@ -140,10 +140,18 @@ export class AwardUserController {
         ['desc']
     );
 
+    const allUsers = await this.userRepository.find({});
+
+
+
     const users = await this.userRepository.find({});
     const userMap = keyBy(users, 'id');
 
-    const topTen = [...ordered.slice(0, 10)];
+    const usersWithoutPoints = users.filter((user) => user && (Object.keys(usersIdsWithPoints).indexOf(user.id!.toString()) === -1))
+    console.log('users without points', usersWithoutPoints);
+
+    const ordered2 = [...ordered, ...usersWithoutPoints.map(user => ({userId: user.id!, points: 0}))];
+    const topTen = [...ordered2.slice(0, 10)];
 
     //TODO: map to user id of type number not string!
     return topTen.map(v => {

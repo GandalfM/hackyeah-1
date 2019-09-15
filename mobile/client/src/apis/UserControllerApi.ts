@@ -37,7 +37,7 @@ export interface UserControllerCreateRequest {
 }
 
 export interface UserControllerDeleteByIdRequest {
-    id: number;
+    id: string;
 }
 
 export interface UserControllerFindRequest {
@@ -45,11 +45,11 @@ export interface UserControllerFindRequest {
 }
 
 export interface UserControllerFindByIdRequest {
-    id: number;
+    id: string;
 }
 
 export interface UserControllerReplaceByIdRequest {
-    id: number;
+    id: string;
     user?: User;
 }
 
@@ -59,7 +59,7 @@ export interface UserControllerUpdateAllRequest {
 }
 
 export interface UserControllerUpdateByIdRequest {
-    id: number;
+    id: string;
     userPartial?: UserPartial;
 }
 

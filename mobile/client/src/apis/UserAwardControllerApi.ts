@@ -29,22 +29,22 @@ import {
 } from '../models';
 
 export interface UserAwardControllerCreateRequest {
-    id: number;
+    id: string;
     awardOptionalUserIdExcludingId?: AwardOptionalUserIdExcludingId;
 }
 
 export interface UserAwardControllerDeleteRequest {
-    id: number;
+    id: string;
     where?: object;
 }
 
 export interface UserAwardControllerFindRequest {
-    id: number;
+    id: string;
     filter?: { [key: string]: object; };
 }
 
 export interface UserAwardControllerPatchRequest {
-    id: number;
+    id: string;
     where?: object;
     awardPartial?: AwardPartial;
 }

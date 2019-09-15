@@ -32,16 +32,16 @@ export interface GarbageBin {
     longitude: number;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof GarbageBin
      */
-    id?: number;
+    id?: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof GarbageBin
      */
-    userId?: number;
+    userId?: string;
     /**
      * 
      * @type {number}

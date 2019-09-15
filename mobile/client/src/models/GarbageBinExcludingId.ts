@@ -32,10 +32,10 @@ export interface GarbageBinExcludingId {
     longitude: number;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof GarbageBinExcludingId
      */
-    userId?: number;
+    userId?: string;
     /**
      * 
      * @type {number}

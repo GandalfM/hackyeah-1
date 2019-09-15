@@ -26,22 +26,22 @@ export interface AwardPartial {
     points?: number;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof AwardPartial
      */
-    id?: number;
+    id?: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof AwardPartial
      */
-    userId?: number;
+    userId?: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof AwardPartial
      */
-    garbageBinId?: number;
+    garbageBinId?: string;
 }
 
 export function AwardPartialFromJSON(json: any): AwardPartial {

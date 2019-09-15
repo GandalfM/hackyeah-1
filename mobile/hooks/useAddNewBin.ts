@@ -9,6 +9,7 @@ export default () => {
     return async (garbageBinExcludingId: GarbageBinExcludingId) => {
         const data = await garbageApi.garbageBinControllerControllerCreate({
             garbageBinExcludingId: {
+                userId: state.loggedInUser.id.toString(),
                 latitude: garbageBinExcludingId.latitude,
                 longitude: garbageBinExcludingId.longitude,
             }

@@ -20,10 +20,10 @@ import { exists, mapValues } from '../runtime';
 export interface UserPartial {
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof UserPartial
      */
-    id?: number;
+    id?: string;
     /**
      * 
      * @type {string}

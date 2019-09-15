@@ -26,22 +26,22 @@ export interface Award {
     points: number;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof Award
      */
-    id?: number;
+    id?: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof Award
      */
-    userId?: number;
+    userId?: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof Award
      */
-    garbageBinId?: number;
+    garbageBinId?: string;
 }
 
 export function AwardFromJSON(json: any): Award {

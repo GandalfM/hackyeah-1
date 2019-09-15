@@ -73,7 +73,7 @@
             "name": "id",
             "in": "path",
             "schema": {
-              "type": "number"
+              "type": "string"
             },
             "required": true
           }
@@ -96,7 +96,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "sum": {
+                    "points": {
                       "type": "number"
                     },
                     "place": {
@@ -246,7 +246,7 @@
             "name": "id",
             "in": "path",
             "schema": {
-              "type": "number"
+              "type": "string"
             },
             "required": true
           }
@@ -279,7 +279,7 @@
             "name": "id",
             "in": "path",
             "schema": {
-              "type": "number"
+              "type": "string"
             },
             "required": true
           }
@@ -319,7 +319,7 @@
             "name": "id",
             "in": "path",
             "schema": {
-              "type": "number"
+              "type": "string"
             },
             "required": true
           }
@@ -342,7 +342,7 @@
             "name": "id",
             "in": "path",
             "schema": {
-              "type": "number"
+              "type": "string"
             },
             "required": true
           }
@@ -650,7 +650,7 @@
             "name": "id",
             "in": "path",
             "schema": {
-              "type": "number"
+              "type": "string"
             },
             "required": true
           }
@@ -695,7 +695,7 @@
             "name": "id",
             "in": "path",
             "schema": {
-              "type": "number"
+              "type": "string"
             },
             "required": true
           },
@@ -747,7 +747,7 @@
             "name": "id",
             "in": "path",
             "schema": {
-              "type": "number"
+              "type": "string"
             },
             "required": true
           },
@@ -792,7 +792,7 @@
             "name": "id",
             "in": "path",
             "schema": {
-              "type": "number"
+              "type": "string"
             },
             "required": true
           },
@@ -826,7 +826,7 @@
             "name": "id",
             "in": "path",
             "schema": {
-              "type": "number"
+              "type": "string"
             },
             "required": true
           }
@@ -859,7 +859,7 @@
             "name": "id",
             "in": "path",
             "schema": {
-              "type": "number"
+              "type": "string"
             },
             "required": true
           }
@@ -899,7 +899,7 @@
             "name": "id",
             "in": "path",
             "schema": {
-              "type": "number"
+              "type": "string"
             },
             "required": true
           }
@@ -922,7 +922,7 @@
             "name": "id",
             "in": "path",
             "schema": {
-              "type": "number"
+              "type": "string"
             },
             "required": true
           }
@@ -1138,10 +1138,10 @@
             "type": "number"
           },
           "id": {
-            "type": "number"
+            "type": "string"
           },
           "userId": {
-            "type": "number"
+            "type": "string"
           },
           "approvalCount": {
             "type": "number"
@@ -1159,7 +1159,7 @@
         "title": "User",
         "properties": {
           "id": {
-            "type": "number"
+            "type": "string"
           },
           "avatarUrl": {
             "type": "string"
@@ -1186,7 +1186,7 @@
             "type": "number"
           },
           "userId": {
-            "type": "number"
+            "type": "string"
           },
           "approvalCount": {
             "type": "number"
@@ -1219,10 +1219,10 @@
             "type": "number"
           },
           "id": {
-            "type": "number"
+            "type": "string"
           },
           "userId": {
-            "type": "number"
+            "type": "string"
           },
           "approvalCount": {
             "type": "number"
@@ -1239,13 +1239,13 @@
             "type": "number"
           },
           "id": {
-            "type": "number"
+            "type": "string"
           },
           "userId": {
-            "type": "number"
+            "type": "string"
           },
           "garbageBinId": {
-            "type": "number"
+            "type": "string"
           }
         },
         "required": [
@@ -1259,10 +1259,10 @@
             "type": "number"
           },
           "userId": {
-            "type": "number"
+            "type": "string"
           },
           "garbageBinId": {
-            "type": "number"
+            "type": "string"
           }
         },
         "required": [
@@ -1285,13 +1285,13 @@
             "type": "number"
           },
           "id": {
-            "type": "number"
+            "type": "string"
           },
           "userId": {
-            "type": "number"
+            "type": "string"
           },
           "garbageBinId": {
-            "type": "number"
+            "type": "string"
           }
         }
       },
@@ -1326,7 +1326,7 @@
         "title": "UserPartial",
         "properties": {
           "id": {
-            "type": "number"
+            "type": "string"
           },
           "avatarUrl": {
             "type": "string"

@@ -37,7 +37,7 @@ export interface GarbageBinControllerControllerCreateRequest {
 }
 
 export interface GarbageBinControllerControllerDeleteByIdRequest {
-    id: number;
+    id: string;
 }
 
 export interface GarbageBinControllerControllerFindRequest {
@@ -45,11 +45,11 @@ export interface GarbageBinControllerControllerFindRequest {
 }
 
 export interface GarbageBinControllerControllerFindByIdRequest {
-    id: number;
+    id: string;
 }
 
 export interface GarbageBinControllerControllerReplaceByIdRequest {
-    id: number;
+    id: string;
     garbageBin?: GarbageBin;
 }
 
@@ -59,7 +59,7 @@ export interface GarbageBinControllerControllerUpdateAllRequest {
 }
 
 export interface GarbageBinControllerControllerUpdateByIdRequest {
-    id: number;
+    id: string;
     garbageBinPartial?: GarbageBinPartial;
 }
 
@@ -104,6 +104,8 @@ export class GarbageBinControllerControllerApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        console.log('body to send', GarbageBinExcludingIdToJSON(requestParameters.garbageBinExcludingId));
 
         const response = await this.request({
             path: `/garbage-bins`,
