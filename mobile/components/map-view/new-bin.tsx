@@ -19,7 +19,7 @@ export default function NewBin({ marginBottom }) {
     return <>
         <Fab
             direction="up"
-            style={{ backgroundColor: '#5067FF', marginBottom }}
+            style={{ backgroundColor: '#5067FF' }}
             position="bottomRight"
             onPress={async () => {
                 setIsAdding(true);
