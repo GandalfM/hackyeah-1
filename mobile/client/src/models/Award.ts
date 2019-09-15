@@ -15,67 +15,53 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface GarbageBin
+ * @interface Award
  */
-export interface GarbageBin {
+export interface Award {
     /**
      * 
      * @type {number}
-     * @memberof GarbageBin
+     * @memberof Award
      */
-    latitude: number;
+    points: number;
     /**
      * 
      * @type {number}
-     * @memberof GarbageBin
-     */
-    longitude: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof GarbageBin
+     * @memberof Award
      */
     id?: number;
     /**
      * 
      * @type {number}
-     * @memberof GarbageBin
+     * @memberof Award
      */
     userId?: number;
     /**
      * 
      * @type {number}
-     * @memberof GarbageBin
+     * @memberof Award
      */
-    approvalCount?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof GarbageBin
-     */
-    rejectionCount?: number;
+    garbageBinId?: number;
 }
 
-export function GarbageBinFromJSON(json: any): GarbageBin {
-    return GarbageBinFromJSONTyped(json, false);
+export function AwardFromJSON(json: any): Award {
+    return AwardFromJSONTyped(json, false);
 }
 
-export function GarbageBinFromJSONTyped(json: any, ignoreDiscriminator: boolean): GarbageBin {
+export function AwardFromJSONTyped(json: any, ignoreDiscriminator: boolean): Award {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'latitude': json['latitude'],
-        'longitude': json['longitude'],
+        'points': json['points'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'userId': !exists(json, 'userId') ? undefined : json['userId'],
-        'approvalCount': !exists(json, 'approvalCount') ? undefined : json['approvalCount'],
-        'rejectionCount': !exists(json, 'rejectionCount') ? undefined : json['rejectionCount'],
+        'garbageBinId': !exists(json, 'garbageBinId') ? undefined : json['garbageBinId'],
     };
 }
 
-export function GarbageBinToJSON(value?: GarbageBin): any {
+export function AwardToJSON(value?: Award): any {
     if (value === undefined) {
         return undefined;
     }
@@ -84,12 +70,10 @@ export function GarbageBinToJSON(value?: GarbageBin): any {
     }
     return {
         
-        'latitude': value.latitude,
-        'longitude': value.longitude,
+        'points': value.points,
         'id': value.id,
         'userId': value.userId,
-        'approvalCount': value.approvalCount,
-        'rejectionCount': value.rejectionCount,
+        'garbageBinId': value.garbageBinId,
     };
 }
 

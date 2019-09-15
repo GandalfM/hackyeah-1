@@ -17,6 +17,10 @@ import {
     GarbagebinsFieldsFromJSON,
     GarbagebinsFieldsFromJSONTyped,
     GarbagebinsFieldsToJSON,
+    GarbagebinsInclude,
+    GarbagebinsIncludeFromJSON,
+    GarbagebinsIncludeFromJSONTyped,
+    GarbagebinsIncludeToJSON,
 } from './';
 
 /**
@@ -61,6 +65,12 @@ export interface Filter {
      * @memberof Filter
      */
     order?: Array<string>;
+    /**
+     * 
+     * @type {Array<GarbagebinsInclude>}
+     * @memberof Filter
+     */
+    include?: Array<GarbagebinsInclude>;
 }
 
 export function FilterFromJSON(json: any): Filter {
@@ -79,6 +89,7 @@ export function FilterFromJSONTyped(json: any, ignoreDiscriminator: boolean): Fi
         'limit': !exists(json, 'limit') ? undefined : json['limit'],
         'skip': !exists(json, 'skip') ? undefined : json['skip'],
         'order': !exists(json, 'order') ? undefined : json['order'],
+        'include': !exists(json, 'include') ? undefined : (json['include'] as Array<any>).map(GarbagebinsIncludeFromJSON),
     };
 }
 
@@ -97,6 +108,7 @@ export function FilterToJSON(value?: Filter): any {
         'limit': value.limit,
         'skip': value.skip,
         'order': value.order,
+        'include': value.include === undefined ? undefined : (value.include as Array<any>).map(GarbagebinsIncludeToJSON),
     };
 }
 

@@ -36,6 +36,24 @@ export interface GarbageBinPartial {
      * @memberof GarbageBinPartial
      */
     id?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof GarbageBinPartial
+     */
+    userId?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof GarbageBinPartial
+     */
+    approvalCount?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof GarbageBinPartial
+     */
+    rejectionCount?: number;
 }
 
 export function GarbageBinPartialFromJSON(json: any): GarbageBinPartial {
@@ -51,6 +69,9 @@ export function GarbageBinPartialFromJSONTyped(json: any, ignoreDiscriminator: b
         'latitude': !exists(json, 'latitude') ? undefined : json['latitude'],
         'longitude': !exists(json, 'longitude') ? undefined : json['longitude'],
         'id': !exists(json, 'id') ? undefined : json['id'],
+        'userId': !exists(json, 'userId') ? undefined : json['userId'],
+        'approvalCount': !exists(json, 'approvalCount') ? undefined : json['approvalCount'],
+        'rejectionCount': !exists(json, 'rejectionCount') ? undefined : json['rejectionCount'],
     };
 }
 
@@ -66,6 +87,9 @@ export function GarbageBinPartialToJSON(value?: GarbageBinPartial): any {
         'latitude': value.latitude,
         'longitude': value.longitude,
         'id': value.id,
+        'userId': value.userId,
+        'approvalCount': value.approvalCount,
+        'rejectionCount': value.rejectionCount,
     };
 }
 

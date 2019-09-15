@@ -15,39 +15,39 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface InlineResponse200
+ * @interface GarbagebinsInclude
  */
-export interface InlineResponse200 {
+export interface GarbagebinsInclude {
     /**
      * 
-     * @type {number}
-     * @memberof InlineResponse200
+     * @type {string}
+     * @memberof GarbagebinsInclude
      */
-    sum?: number;
+    relation?: string;
     /**
      * 
-     * @type {number}
-     * @memberof InlineResponse200
+     * @type {object}
+     * @memberof GarbagebinsInclude
      */
-    place?: number;
+    scope?: object;
 }
 
-export function InlineResponse200FromJSON(json: any): InlineResponse200 {
-    return InlineResponse200FromJSONTyped(json, false);
+export function GarbagebinsIncludeFromJSON(json: any): GarbagebinsInclude {
+    return GarbagebinsIncludeFromJSONTyped(json, false);
 }
 
-export function InlineResponse200FromJSONTyped(json: any, ignoreDiscriminator: boolean): InlineResponse200 {
+export function GarbagebinsIncludeFromJSONTyped(json: any, ignoreDiscriminator: boolean): GarbagebinsInclude {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'sum': !exists(json, 'sum') ? undefined : json['sum'],
-        'place': !exists(json, 'place') ? undefined : json['place'],
+        'relation': !exists(json, 'relation') ? undefined : json['relation'],
+        'scope': !exists(json, 'scope') ? undefined : json['scope'],
     };
 }
 
-export function InlineResponse200ToJSON(value?: InlineResponse200): any {
+export function GarbagebinsIncludeToJSON(value?: GarbagebinsInclude): any {
     if (value === undefined) {
         return undefined;
     }
@@ -56,8 +56,8 @@ export function InlineResponse200ToJSON(value?: InlineResponse200): any {
     }
     return {
         
-        'sum': value.sum,
-        'place': value.place,
+        'relation': value.relation,
+        'scope': value.scope,
     };
 }
 

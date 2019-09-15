@@ -1,5 +1,4 @@
-import { GarbageBinControllerControllerApi } from "./client/src";
+import {AwardUserControllerApi, GarbageBinControllerControllerApi} from "./client/src";
 
-const api = new GarbageBinControllerControllerApi();
-
-export default api;
+export const garbageApi = new GarbageBinControllerControllerApi();
+export const awardApi = new AwardUserControllerApi();

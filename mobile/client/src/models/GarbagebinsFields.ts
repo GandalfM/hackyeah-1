@@ -36,6 +36,24 @@ export interface GarbagebinsFields {
      * @memberof GarbagebinsFields
      */
     id?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GarbagebinsFields
+     */
+    userId?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GarbagebinsFields
+     */
+    approvalCount?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GarbagebinsFields
+     */
+    rejectionCount?: boolean;
 }
 
 export function GarbagebinsFieldsFromJSON(json: any): GarbagebinsFields {
@@ -51,6 +69,9 @@ export function GarbagebinsFieldsFromJSONTyped(json: any, ignoreDiscriminator: b
         'latitude': !exists(json, 'latitude') ? undefined : json['latitude'],
         'longitude': !exists(json, 'longitude') ? undefined : json['longitude'],
         'id': !exists(json, 'id') ? undefined : json['id'],
+        'userId': !exists(json, 'userId') ? undefined : json['userId'],
+        'approvalCount': !exists(json, 'approvalCount') ? undefined : json['approvalCount'],
+        'rejectionCount': !exists(json, 'rejectionCount') ? undefined : json['rejectionCount'],
     };
 }
 
@@ -66,6 +87,9 @@ export function GarbagebinsFieldsToJSON(value?: GarbagebinsFields): any {
         'latitude': value.latitude,
         'longitude': value.longitude,
         'id': value.id,
+        'userId': value.userId,
+        'approvalCount': value.approvalCount,
+        'rejectionCount': value.rejectionCount,
     };
 }
 

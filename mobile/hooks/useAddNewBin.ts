@@ -1,5 +1,5 @@
 import { GarbageBinExcludingId } from "../client/src";
-import api from "../api";
+import {garbageApi} from "../api";
 import { useStateValue } from "../context/state";
 import { addNewBinAction } from "../actions/bin";
 import { ToastAndroid } from "react-native";
@@ -7,7 +7,7 @@ import { ToastAndroid } from "react-native";
 export default () => {
     const [state, dispatch] = useStateValue();
     return async (garbageBinExcludingId: GarbageBinExcludingId) => {
-        const data = await api.garbageBinControllerControllerCreate({
+        const data = await garbageApi.garbageBinControllerControllerCreate({
             garbageBinExcludingId: {
                 latitude: garbageBinExcludingId.latitude,
                 longitude: garbageBinExcludingId.longitude,

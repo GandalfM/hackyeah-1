@@ -14,9 +14,9 @@
 
 import * as runtime from '../runtime';
 import {
-    InlineResponse200,
-    InlineResponse200FromJSON,
-    InlineResponse200ToJSON,
+    InlineResponse2001,
+    InlineResponse2001FromJSON,
+    InlineResponse2001ToJSON,
     User,
     UserFromJSON,
     UserToJSON,
@@ -70,7 +70,7 @@ export class UserControllerApi extends runtime.BaseAPI {
 
     /**
      */
-    async userControllerCountRaw(requestParameters: UserControllerCountRequest): Promise<runtime.ApiResponse<InlineResponse200>> {
+    async userControllerCountRaw(requestParameters: UserControllerCountRequest): Promise<runtime.ApiResponse<InlineResponse2001>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         if (requestParameters.where !== undefined) {
@@ -86,12 +86,12 @@ export class UserControllerApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => InlineResponse200FromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => InlineResponse2001FromJSON(jsonValue));
     }
 
    /**
     */
-    async userControllerCount(requestParameters: UserControllerCountRequest): Promise<InlineResponse200> {
+    async userControllerCount(requestParameters: UserControllerCountRequest): Promise<InlineResponse2001> {
         const response = await this.userControllerCountRaw(requestParameters);
         return await response.value();
     }
@@ -238,7 +238,7 @@ export class UserControllerApi extends runtime.BaseAPI {
 
     /**
      */
-    async userControllerUpdateAllRaw(requestParameters: UserControllerUpdateAllRequest): Promise<runtime.ApiResponse<InlineResponse200>> {
+    async userControllerUpdateAllRaw(requestParameters: UserControllerUpdateAllRequest): Promise<runtime.ApiResponse<InlineResponse2001>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         if (requestParameters.where !== undefined) {
@@ -257,12 +257,12 @@ export class UserControllerApi extends runtime.BaseAPI {
             body: UserPartialToJSON(requestParameters.userPartial),
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => InlineResponse200FromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => InlineResponse2001FromJSON(jsonValue));
     }
 
    /**
     */
-    async userControllerUpdateAll(requestParameters: UserControllerUpdateAllRequest): Promise<InlineResponse200> {
+    async userControllerUpdateAll(requestParameters: UserControllerUpdateAllRequest): Promise<InlineResponse2001> {
         const response = await this.userControllerUpdateAllRaw(requestParameters);
         return await response.value();
     }

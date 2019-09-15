@@ -5,6 +5,157 @@
     "version": "1.0.0"
   },
   "paths": {
+    "/awards/user/top": {
+      "get": {
+        "x-controller-name": "AwardUserController",
+        "x-operation-name": "getTopTenUsers",
+        "tags": [
+          "AwardUserController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Top ten users",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "properties": {
+                      "points": {
+                        "type": "number"
+                      },
+                      "userId": {
+                        "type": "string"
+                      },
+                      "avatarUrl": {
+                        "type": "string"
+                      },
+                      "username": {
+                        "type": "string"
+                      },
+                      "email": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "AwardUserController.getTopTenUsers"
+      }
+    },
+    "/awards/{id}/garbage-bin": {
+      "get": {
+        "x-controller-name": "AwardGarbageBinController",
+        "x-operation-name": "getGarbageBin",
+        "tags": [
+          "AwardGarbageBinController"
+        ],
+        "responses": {
+          "200": {
+            "description": "GarbageBin belonging to Award",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GarbageBin"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "AwardGarbageBinController.getGarbageBin"
+      }
+    },
+    "/awards/{id}/user/summary": {
+      "get": {
+        "x-controller-name": "AwardUserController",
+        "x-operation-name": "getUserSummary",
+        "tags": [
+          "AwardUserController"
+        ],
+        "responses": {
+          "200": {
+            "description": "User score summary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "sum": {
+                      "type": "number"
+                    },
+                    "place": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "AwardUserController.getUserSummary"
+      }
+    },
+    "/awards/{id}/user": {
+      "get": {
+        "x-controller-name": "AwardUserController",
+        "x-operation-name": "getUser",
+        "tags": [
+          "AwardUserController"
+        ],
+        "responses": {
+          "200": {
+            "description": "User belonging to Award",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "AwardUserController.getUser"
+      }
+    },
     "/garbage-bins/count": {
       "get": {
         "x-controller-name": "GarbageBinControllerController",
@@ -41,6 +192,41 @@
           }
         ],
         "operationId": "GarbageBinControllerController.count"
+      }
+    },
+    "/garbage-bins/{id}/user": {
+      "get": {
+        "x-controller-name": "GarbageBinUserController",
+        "x-operation-name": "getUser",
+        "tags": [
+          "GarbageBinUserController"
+        ],
+        "responses": {
+          "200": {
+            "description": "User belonging to GarbageBin",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "GarbageBinUserController.getUser"
       }
     },
     "/garbage-bins/{id}": {
@@ -283,6 +469,15 @@
                     },
                     "id": {
                       "type": "boolean"
+                    },
+                    "userId": {
+                      "type": "boolean"
+                    },
+                    "approvalCount": {
+                      "type": "boolean"
+                    },
+                    "rejectionCount": {
+                      "type": "boolean"
                     }
                   }
                 },
@@ -302,6 +497,46 @@
                   "type": "array",
                   "items": {
                     "type": "string"
+                  }
+                },
+                "include": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "relation": {
+                        "type": "string"
+                      },
+                      "scope": {
+                        "properties": {
+                          "where": {
+                            "type": "object"
+                          },
+                          "fields": {
+                            "type": "object",
+                            "properties": {}
+                          },
+                          "offset": {
+                            "type": "integer",
+                            "minimum": 0
+                          },
+                          "limit": {
+                            "type": "integer",
+                            "minimum": 0
+                          },
+                          "skip": {
+                            "type": "integer",
+                            "minimum": 0
+                          },
+                          "order": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -389,6 +624,189 @@
           }
         ],
         "operationId": "UserController.count"
+      }
+    },
+    "/users/{id}/awards": {
+      "post": {
+        "x-controller-name": "UserAwardController",
+        "x-operation-name": "create",
+        "tags": [
+          "UserAwardController"
+        ],
+        "responses": {
+          "200": {
+            "description": "User model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Award"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AwardOptional[userId]Excluding[id]"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "UserAwardController.create"
+      },
+      "patch": {
+        "x-controller-name": "UserAwardController",
+        "x-operation-name": "patch",
+        "tags": [
+          "UserAwardController"
+        ],
+        "responses": {
+          "200": {
+            "description": "User.Award PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          },
+          {
+            "name": "where",
+            "in": "query",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AwardPartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "UserAwardController.patch"
+      },
+      "get": {
+        "x-controller-name": "UserAwardController",
+        "x-operation-name": "find",
+        "tags": [
+          "UserAwardController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of Award's belonging to User",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Award"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          }
+        ],
+        "operationId": "UserAwardController.find"
+      },
+      "delete": {
+        "x-controller-name": "UserAwardController",
+        "x-operation-name": "delete",
+        "tags": [
+          "UserAwardController"
+        ],
+        "responses": {
+          "200": {
+            "description": "User.Award DELETE success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          },
+          {
+            "name": "where",
+            "in": "query",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "operationId": "UserAwardController.delete"
       }
     },
     "/users/{id}": {
@@ -654,6 +1072,46 @@
                   "items": {
                     "type": "string"
                   }
+                },
+                "include": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "relation": {
+                        "type": "string"
+                      },
+                      "scope": {
+                        "properties": {
+                          "where": {
+                            "type": "object"
+                          },
+                          "fields": {
+                            "type": "object",
+                            "properties": {}
+                          },
+                          "offset": {
+                            "type": "integer",
+                            "minimum": 0
+                          },
+                          "limit": {
+                            "type": "integer",
+                            "minimum": 0
+                          },
+                          "skip": {
+                            "type": "integer",
+                            "minimum": 0
+                          },
+                          "order": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -681,11 +1139,41 @@
           },
           "id": {
             "type": "number"
+          },
+          "userId": {
+            "type": "number"
+          },
+          "approvalCount": {
+            "type": "number"
+          },
+          "rejectionCount": {
+            "type": "number"
           }
         },
         "required": [
           "latitude",
           "longitude"
+        ]
+      },
+      "User": {
+        "title": "User",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "avatarUrl": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "username",
+          "email"
         ]
       },
       "GarbageBinExcluding[id]": {
@@ -695,6 +1183,15 @@
             "type": "number"
           },
           "longitude": {
+            "type": "number"
+          },
+          "userId": {
+            "type": "number"
+          },
+          "approvalCount": {
+            "type": "number"
+          },
+          "rejectionCount": {
             "type": "number"
           }
         },
@@ -723,29 +1220,80 @@
           },
           "id": {
             "type": "number"
+          },
+          "userId": {
+            "type": "number"
+          },
+          "approvalCount": {
+            "type": "number"
+          },
+          "rejectionCount": {
+            "type": "number"
           }
         }
       },
-      "User": {
-        "title": "User",
+      "Award": {
+        "title": "Award",
         "properties": {
+          "points": {
+            "type": "number"
+          },
           "id": {
             "type": "number"
           },
-          "avatarUrl": {
-            "type": "string"
+          "userId": {
+            "type": "number"
           },
-          "username": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
+          "garbageBinId": {
+            "type": "number"
           }
         },
         "required": [
-          "username",
-          "email"
+          "points"
         ]
+      },
+      "AwardOptional[userId]Excluding[id]": {
+        "title": "AwardOptional[userId]Excluding[id]",
+        "properties": {
+          "points": {
+            "type": "number"
+          },
+          "userId": {
+            "type": "number"
+          },
+          "garbageBinId": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "points"
+        ],
+        "not": {
+          "anyOf": [
+            {
+              "required": [
+                "id"
+              ]
+            }
+          ]
+        }
+      },
+      "AwardPartial": {
+        "title": "AwardPartial",
+        "properties": {
+          "points": {
+            "type": "number"
+          },
+          "id": {
+            "type": "number"
+          },
+          "userId": {
+            "type": "number"
+          },
+          "garbageBinId": {
+            "type": "number"
+          }
+        }
       },
       "UserExcluding[id]": {
         "title": "UserExcluding[id]",
