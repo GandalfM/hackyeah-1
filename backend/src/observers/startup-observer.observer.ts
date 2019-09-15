@@ -35,24 +35,30 @@ export class StartupObserverObserver implements LifeCycleObserver {
               ])
               .then(() => console.log("Added bins initial dataset"));
       }
+      let users;
       if(userCount === 0) {
-          this.userRepository.createAll([
+          users = await this.userRepository.createAll([
               {username: "zak", email: "zakhttp@gmail.com"},
               {username: "mateusz", email: "mateusz.szerszynski@gmail.com"}
-          ])
-              .then(() => console.log("Added users initial dataset"));
+          ]);
+          console.log("Added users initial dataset", users);
+      } else {
+          users = await this.userRepository.find({});
       }
+      let bins;
       if (binCount === 0) {
-          this.garbageBinRepository.createAll([
-              {latitude: 52.112666, longitude: 20.827937, userId: 1, approvalCount: 5, rejectionCount: 1},
-              {latitude: 52.112650, longitude: 20.827937, userId: 2}
-              ])
-              .then(() => console.log("Added bins initial dataset"));
+          bins = await this.garbageBinRepository.createAll([
+              {latitude: 52.112666, longitude: 20.827937, userId: users[0].id, approvalCount: 5, rejectionCount: 1},
+              {latitude: 52.112650, longitude: 20.827937, userId: users[0].id}
+              ]);
+          console.log("Added bins initial dataset", bins);
+      } else {
+          bins = await this.garbageBinRepository.find({})
       }
       if (awardCount === 0) {
           this.awardRepository.createAll([
-              {points: 100, userId: 1, garbageBinId: 1},
-              {points: 200, userId: 2, garbageBinId: 2}
+              {points: 100, userId: users[0].id, garbageBinId: bins[0].id},
+              {points: 200, userId: users[1].id, garbageBinId: bins[1].id}
           ])
               .then(() => console.log("Added awards initial dataset"));
       }

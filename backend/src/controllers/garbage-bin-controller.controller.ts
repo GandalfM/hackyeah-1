@@ -109,7 +109,7 @@ export class GarbageBinControllerController {
       },
     },
   })
-  async findById(@param.path.number('id') id: number): Promise<GarbageBin> {
+  async findById(@param.path.string('id') id: string): Promise<GarbageBin> {
     return this.garbageBinRepository.findById(id);
   }
 
@@ -121,7 +121,7 @@ export class GarbageBinControllerController {
     },
   })
   async updateById(
-    @param.path.number('id') id: number,
+    @param.path.string('id') id: string,
     @requestBody({
       content: {
         'application/json': {
@@ -142,7 +142,7 @@ export class GarbageBinControllerController {
     },
   })
   async replaceById(
-    @param.path.number('id') id: number,
+    @param.path.string('id') id: string,
     @requestBody() garbageBin: GarbageBin,
   ): Promise<void> {
     await this.garbageBinRepository.replaceById(id, garbageBin);
@@ -155,7 +155,7 @@ export class GarbageBinControllerController {
       },
     },
   })
-  async deleteById(@param.path.number('id') id: number): Promise<void> {
+  async deleteById(@param.path.string('id') id: string): Promise<void> {
     await this.garbageBinRepository.deleteById(id);
   }
 }

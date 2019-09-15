@@ -31,7 +31,7 @@ export class AwardGarbageBinController {
     },
   })
   async getGarbageBin(
-    @param.path.number('id') id: typeof Award.prototype.id,
+    @param.path.string('id') id: typeof Award.prototype.id,
   ): Promise<GarbageBin> {
     return this.awardRepository.garbageBin(id);
   }

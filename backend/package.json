@@ -28,8 +28,8 @@
     "docker:build": "docker build -t backend .",
     "docker:run": "docker run -p 3000:3000 -d backend",
     "migrate": "node ./dist/migrate",
-    "prestart": "npm run build",
-    "start": "node -r source-map-support/register .",
+    "start": "node .",
+    "startDev": "npm run build && node .",
     "prepublishOnly": "npm run test"
   },
   "repository": {

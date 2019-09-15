@@ -39,7 +39,7 @@ export class UserAwardController {
     },
   })
   async find(
-    @param.path.number('id') id: number,
+    @param.path.string('id') id: string,
     @param.query.object('filter') filter?: Filter<Award>,
   ): Promise<Award[]> {
     return this.userRepository.awards(id).find(filter);
@@ -54,7 +54,7 @@ export class UserAwardController {
     },
   })
   async create(
-    @param.path.number('id') id: typeof User.prototype.id,
+    @param.path.string('id') id: typeof User.prototype.id,
     @requestBody({
       content: {
         'application/json': {
@@ -78,7 +78,7 @@ export class UserAwardController {
     },
   })
   async patch(
-    @param.path.number('id') id: number,
+    @param.path.string('id') id: string,
     @requestBody({
       content: {
         'application/json': {
@@ -101,7 +101,7 @@ export class UserAwardController {
     },
   })
   async delete(
-    @param.path.number('id') id: number,
+    @param.path.string('id') id: string,
     @param.query.object('where', getWhereSchemaFor(Award)) where?: Where<Award>,
   ): Promise<Count> {
     return this.userRepository.awards(id).delete(where);
