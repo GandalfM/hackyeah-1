@@ -5,6 +5,7 @@ export default function Marker({ location, onPress }) {
     return <MapMarker
         coordinate={{ latitude: location.latitude, longitude: location.longitude }}
         onPress={onPress}
+        pinColor="navy"
     >
     </MapMarker>
 }
