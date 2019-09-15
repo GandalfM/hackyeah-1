@@ -2,7 +2,7 @@ import React from 'react';
 import { Image, StyleSheet } from 'react-native';
 import { useStateValue } from "../../context/state";
 
-import { Body, Button, Icon, Left, ListItem, Right, Spinner, Text, View } from "native-base";
+import { Body, Icon, Left, ListItem, Right, Spinner, Text, View } from "native-base";
 import gravatar from "gravatar";
 
 import Swiper from 'react-native-swiper'
@@ -53,7 +53,7 @@ export function RankView() {
 
     const {loggedInUser} = state;
     const avatarUrl = loggedInUser !== null ? `https:${gravatar.url(loggedInUser.email)}` : 'https://www.gravatar.com/avatar/?d=identicon';
-    const reportedBinsCount = bins.filter(bin => bin.userId === loggedInUser.id).length;
+    const reportedBinsCount = bins ? bins.filter(bin => bin.userId === loggedInUser.id).length : 1;
 
     return (
         <Swiper style={styles.wrapper}>
@@ -64,28 +64,24 @@ export function RankView() {
                 </View>
                 <ListItem icon>
                     <Left>
-                        <Button style={{backgroundColor: "#007AFF"}}>
-                            <Icon active name="ios-pulse"/>
-                        </Button>
+                        <Icon active name="star"/>
                     </Left>
                     <Body>
-                        <Text>Karma</Text>
+                        <Text>Score</Text>
                     </Body>
                     <Right>
-                        {!loadingSummary ? <Text>{ userSummary.points}</Text> : <Spinner />}
+                        {!loadingSummary ? <Text>{userSummary.points}</Text> : <Spinner/>}
                     </Right>
                 </ListItem>
                 <ListItem icon>
                     <Left>
-                        <Button style={{backgroundColor: "#FF9501"}}>
-                            <Icon active name="ios-flag"/>
-                        </Button>
+                        <Icon active name="navigate"/>
                     </Left>
                     <Body>
                         <Text>Bins reported</Text>
                     </Body>
                     <Right>
-                        {!loadingBins ? <Text>{ reportedBinsCount}</Text> : <Spinner />}
+                        {!loadingBins ? <Text>{reportedBinsCount}</Text> : <Spinner/>}
                     </Right>
                 </ListItem>
             </View>
