@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
 import BottomSheet from 'reanimated-bottom-sheet'
-import { H3 } from 'native-base';
 
 const styles = StyleSheet.create({
     headerContainer: {

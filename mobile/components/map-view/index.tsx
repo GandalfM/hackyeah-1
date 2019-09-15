@@ -54,7 +54,7 @@ export function MapViewScreen({ navigation }) {
                 minimalSize={MINIMAL_DRAWER}
                 headerText={binDetails ? `Bin ${binDetails}` : greeting}
             >
-                {binDetails ? <BinDetails id={binDetails} onRemove={() => {
+                {binDetails ? <BinDetails id={binDetails} bin={binList.find(({ id }) => id === binDetails)} onRemove={() => {
                     setBinDetails(undefined)
                 }} /> : <ClosestBins />}
             </BottomDrawer>

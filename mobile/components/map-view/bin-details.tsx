@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
 import { Button, Text, Icon } from 'native-base';
 import useRemoveBin from '../../hooks/useRemoveBin';
+import goToBin from '../../util/goToBin';
+import { GarbageBin } from '../../../backend/src/models';
 
 const styles = StyleSheet.create({
     details: {
@@ -10,6 +12,7 @@ const styles = StyleSheet.create({
     },
     actionBar: {
         flexDirection: 'row',
+        padding: 10,
     },
     buttonContainer: {
         flex: 1,
@@ -18,29 +21,30 @@ const styles = StyleSheet.create({
 });
 
 
-export default function BinDetails({ id, onRemove }: { id: number, onRemove: () => void }) {
+export default function BinDetails({ id, bin, onRemove }: { id: number, bin: GarbageBin, onRemove: () => void }) {
     const removeBin = useRemoveBin();
     return (
         <View style={styles.details}>
-            <Text>Bin of number {id}</Text>
             <ScrollView style={styles.actionBar} horizontal showsHorizontalScrollIndicator={false}>
                 <View style={styles.buttonContainer}>
-                    <Button iconLeft onPress={async () => {
-                        await removeBin(id);
-                        onRemove();
+                    <Button dark iconLeft onPress={async () => {
+                        goToBin(bin.latitude, bin.longitude);
                     }}>
-                        <Icon name='thumbs-down' />
-                        <Text>Downvote</Text>
+                        <Icon name='navigate' />
+                        <Text>Go to</Text>
                     </Button>
                 </View>
 
                 <View style={styles.buttonContainer}>
-                    <Button iconLeft onPress={async () => {
+                    <Button light iconLeft onPress={async () => {
+                        await removeBin(id);
+                        onRemove();
                     }}>
-                        <Icon name='thumbs-up' />
-                        <Text>Upvote</Text>
+                        <Icon dark name='thumbs-down' />
+                        <Text dark>Bin is missing</Text>
                     </Button>
                 </View>
+
             </ScrollView>
         </View>
     );
