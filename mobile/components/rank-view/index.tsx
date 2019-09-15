@@ -53,7 +53,7 @@ export function RankView() {
 
     const {loggedInUser} = state;
     const avatarUrl = loggedInUser !== null ? `https:${gravatar.url(loggedInUser.email)}` : 'https://www.gravatar.com/avatar/?d=identicon';
-    const reportedBinsCount = bins.filter(bin => bin.userId === loggedInUser.id).length;
+    const reportedBinsCount = bins ? bins.filter(bin => bin.userId === loggedInUser.id).length : 1;
 
     return (
         <Swiper style={styles.wrapper}>
