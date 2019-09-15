@@ -11,6 +11,7 @@ import { GarbageBin } from "../../client/src/models";
 import { AppLoading } from 'expo';
 import { BottomDrawer } from './bottom-drawer';
 import ClosestBins from './closest-bins';
+import useLogin from '../../hooks/useLogin';
 
 const MINIMAL_DRAWER = 50;
 const styles = StyleSheet.create({
@@ -26,6 +27,7 @@ const styles = StyleSheet.create({
 export function MapViewScreen({ navigation }) {
     const { loading, data: location } = useCurrentPosition();
     const { loading: loadingList, data: binList } = useListBins();
+    const { data: loggedInUser } = useLogin();
     const [binDetails, setBinDetails] = useState(undefined);
 
 
@@ -40,12 +42,17 @@ export function MapViewScreen({ navigation }) {
             return binList.map((bin: GarbageBin) => <Marker key={bin.id} location={bin} onPress={() => { setBinDetails(bin.id) }} />)
         }
     };
+    const capitalize = (s) => {
+        if (typeof s !== 'string') return ''
+        return s.charAt(0).toUpperCase() + s.slice(1)
+    };
 
+    const greeting = loggedInUser ? `Hi ${capitalize(loggedInUser.username)}, wanna dispose of something?` : '';
     return (
         <>
             <BottomDrawer
                 minimalSize={MINIMAL_DRAWER}
-                headerText={binDetails ? `Bin ${binDetails}` : `Hi, do you want to throw sth?`}
+                headerText={binDetails ? `Bin ${binDetails}` : greeting}
             >
                 {binDetails ? <BinDetails id={binDetails} onRemove={() => {
                     setBinDetails(undefined)

@@ -15,14 +15,17 @@ const styles = StyleSheet.create({
     content: { backgroundColor: 'white' },
     divider: {
         flex: 1,
-        marginTop: 5,
-        borderColor: '#bfbfbf',
+        marginTop: 10,
+        borderColor: '#ccc',
         borderWidth: 3,
         borderRadius: 2,
-        width: '66%'
+        width: '10%'
+    },
+    greeting: {
+        fontSize: 16,
+        lineHeight: 25,
     }
 });
-
 
 export function BottomDrawer({ headerText, minimalSize, children }) {
     return (
@@ -36,7 +39,7 @@ export function BottomDrawer({ headerText, minimalSize, children }) {
             }
             renderHeader={() =>
                 <View style={styles.headerContainer}>
-                    <H3>{headerText}</H3>
+                    <Text style={styles.greeting}>{headerText}</Text>
                     <View style={styles.divider} />
                 </View>}
         >

@@ -29,7 +29,12 @@ export default function ClosestBins({ }: {}) {
     }
 
     const sorted = binList.map((bin) => ({ ...bin, distance: distance(bin.latitude, bin.longitude, location.latitude, location.longitude) })).sort((a, b) => a.distance - b.distance);
-    console.log(binList);
+    const getDistance = (d) => {
+        if (d<200)
+            return d.toFixed(0);
+        if (d>200)
+            return d.toFixed(0);
+    };
     return (
         <List>
             <ListItem itemHeader first>
@@ -38,12 +43,10 @@ export default function ClosestBins({ }: {}) {
             {sorted.map((bin) =>
                 <ListItem icon key={bin.id} onPress={() => goToBin(bin)}>
                     <Left>
-                        <Button style={{ backgroundColor: "grey" }}>
-                            <Icon active name="ios-compass" />
-                        </Button>
+                        <Icon active name="navigate" />
                     </Left>
                     <Body>
-                        <Text>{bin.distance.toPrecision(2)}m</Text>
+                        <Text>{getDistance(bin.distance)}m</Text>
                     </Body>
                 </ListItem>)}
         </List>
